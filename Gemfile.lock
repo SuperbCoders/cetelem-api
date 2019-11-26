@@ -144,6 +144,7 @@ GEM
     rspec-expectations (3.9.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
+    rspec-json_expectations (2.2.0)
     rspec-mocks (3.9.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
@@ -189,6 +190,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 4.1)
   rails (~> 6.0.1)
+  rspec-json_expectations
   rspec-rails
   spring
   spring-watcher-listen (~> 2.0.0)

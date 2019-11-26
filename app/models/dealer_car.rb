@@ -15,4 +15,6 @@ class DealerCar < ApplicationRecord
   validates :color, :metallic, :availability, :owners_number,
             :registry_year, :vin, presence: true
   validates :custom, inclusion: { in: [true, false] }
+
+  scope :available, -> { left_joins(:reservation).where('reservations.id' => nil) }
 end

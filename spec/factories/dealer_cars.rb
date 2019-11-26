@@ -18,5 +18,11 @@ FactoryBot.define do
 
     association :car, factory: :car
     association :dealer, factory: :dealer
+
+    trait :with_reservation do
+      after(:create) do |dealer_car, _evaluator|
+        create(:reservation, dealer_car_id: dealer_car.id)
+      end
+    end
   end
 end
