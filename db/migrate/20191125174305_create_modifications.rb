@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class CreateModifications < ActiveRecord::Migration[6.0]
   def change
     create_table :modifications do |t|
       t.string :name
       t.string :engine_type
       t.string :drive
-      t.string :geearbox
+      t.string :gearbox
       t.references :model, index: true, foreign_key: true, null: false
 
       t.timestamps

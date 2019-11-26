@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDealerCars < ActiveRecord::Migration[6.0]
   def change
     create_table :dealer_cars do |t|
@@ -17,7 +19,6 @@ class CreateDealerCars < ActiveRecord::Migration[6.0]
 
       t.references :car, index: true, foreign_key: true, null: false
       t.references :dealer, index: true, foreign_key: true, null: false
-      t.references :reservation, index: true, foreign_key: true, null: true
 
       t.timestamps
     end

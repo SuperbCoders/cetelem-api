@@ -24,10 +24,12 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.string "city"
     t.string "locality"
     t.string "building", limit: 10
-    t.integer "region_codde"
+    t.integer "region_code"
     t.point "location"
+    t.bigint "dealer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["dealer_id"], name: "index_addresses_on_dealer_id"
   end
 
   create_table "brands", force: :cascade do |t|
@@ -86,12 +88,10 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.string "vin", limit: 30
     t.bigint "car_id", null: false
     t.bigint "dealer_id", null: false
-    t.bigint "reservation_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["car_id"], name: "index_dealer_cars_on_car_id"
     t.index ["dealer_id"], name: "index_dealer_cars_on_dealer_id"
-    t.index ["reservation_id"], name: "index_dealer_cars_on_reservation_id"
   end
 
   create_table "dealers", force: :cascade do |t|
@@ -104,12 +104,8 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.text "bonus_description"
     t.boolean "used_car_saling"
     t.string "brands", array: true
-    t.bigint "address_id", null: false
-    t.bigint "working_hour_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["address_id"], name: "index_dealers_on_address_id"
-    t.index ["working_hour_id"], name: "index_dealers_on_working_hour_id"
   end
 
   create_table "extra_options", force: :cascade do |t|
@@ -141,7 +137,7 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.string "name"
     t.string "engine_type"
     t.string "drive"
-    t.string "geearbox"
+    t.string "gearbox"
     t.bigint "model_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -152,8 +148,10 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.string "phone", limit: 16
     t.string "email"
     t.bigint "user_id", null: false
+    t.bigint "dealer_car_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["dealer_car_id"], name: "index_reservations_on_dealer_car_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -170,10 +168,13 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.string "sat_till"
     t.string "sun_from"
     t.string "sun_till"
+    t.bigint "dealer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["dealer_id"], name: "index_working_hours_on_dealer_id"
   end
 
+  add_foreign_key "addresses", "dealers"
   add_foreign_key "cars", "brands"
   add_foreign_key "cars", "complectations"
   add_foreign_key "cars", "models"
@@ -183,12 +184,11 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
   add_foreign_key "contact_infos", "users"
   add_foreign_key "dealer_cars", "cars"
   add_foreign_key "dealer_cars", "dealers"
-  add_foreign_key "dealer_cars", "reservations"
-  add_foreign_key "dealers", "addresses"
-  add_foreign_key "dealers", "working_hours"
   add_foreign_key "extra_options", "dealer_cars"
   add_foreign_key "images", "dealer_cars"
   add_foreign_key "models", "brands"
   add_foreign_key "modifications", "models"
+  add_foreign_key "reservations", "dealer_cars"
   add_foreign_key "reservations", "users"
+  add_foreign_key "working_hours", "dealers"
 end
