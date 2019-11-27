@@ -18,6 +18,10 @@ Rails.application.routes.draw do
       resources :dealers, only: %i[show] do
         get :reservations
       end
+
+      namespace :admin do
+        resources :register, only: %i[create]
+      end
     end
   end
 end
