@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::CarsController, type: :controller do
-  let(:car) { FactoryBot.create(:dealer_car) }
-  let(:user) { FactoryBot.create(:user) }
+  let(:car) { create(:dealer_car) }
+  let(:user) { create(:user) }
 
   describe 'GET #show' do
     it 'returns http not_found' do

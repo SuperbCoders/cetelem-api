@@ -2,7 +2,7 @@
 
 class DealerCar < ApplicationRecord
   attr_accessor :color, :metallic, :availability, :custom,
-                :owners_number, :credit_discount,
+                :owners_number, :price, :credit_discount,
                 :insurance_discount, :tradein_discount, :max_discount,
                 :currency, :description, :registry_year, :vin
   belongs_to :car
@@ -11,6 +11,7 @@ class DealerCar < ApplicationRecord
   has_many :images, dependent: :destroy
   has_one :reservation, dependent: :destroy
 
+  validates :price, numericality: { only_integer: true }
   validates :currency, inclusion: { in: %w[rub] }
   validates :color, :availability, :owners_number,
             :registry_year, :vin, presence: true

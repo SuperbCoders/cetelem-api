@@ -25,6 +25,17 @@ class Api::V1::Admin::DealerCarsController < ApplicationController
     render json: DealerCar.find(params[:id]).as_json
   end
 
+  def update
+    dealer_car = DealerCar.find(params[:id])
+
+    if dealer_car.update(car_params)
+      render json: dealer_car.as_json
+    else
+      render json: { error: dealer_car.errors.full_messages.join(' ') },
+             status: :unprocessable_entity
+    end
+  end
+
   def destroy
     DealerCar.find(params[:id]).destroy
 
@@ -36,7 +47,7 @@ class Api::V1::Admin::DealerCarsController < ApplicationController
   def car_params
     params.permit(:dealer_id, :car_id,
                   :color, :metallic, :availability, :custom,
-                  :owners_number, :credit_discount,
+                  :owners_number, :price, :credit_discount,
                   :insurance_discount, :tradein_discount, :max_discount,
                   :currency, :description, :registry_year, :vin)
   end

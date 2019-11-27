@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Cars::ListController, type: :controller do
-  let(:dealer_car) { FactoryBot.create(:dealer_car) }
+  let(:dealer_car) { create(:dealer_car) }
 
   describe 'GET #index' do
     it 'returns http success' do
@@ -48,7 +48,7 @@ RSpec.describe Api::V1::Cars::ListController, type: :controller do
     end
 
     it 'deletes data' do
-      FactoryBot.create(:dealer_car)
+      create(:dealer_car)
 
       delete :destroy, params: { dealer_id: dealer_car.dealer_id }
 

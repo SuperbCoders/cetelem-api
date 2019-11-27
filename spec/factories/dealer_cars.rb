@@ -7,6 +7,7 @@ FactoryBot.define do
     availability { 'в наличии' }
     custom { true }
     owners_number { 0 }
+    price { 2_000_000 }
     credit_discount { 100_000 }
     insurance_discount { 100_000 }
     tradein_discount { 100_000 }
@@ -18,11 +19,11 @@ FactoryBot.define do
 
     association :car, factory: :car
     association :dealer, factory: :dealer
+  end
 
-    trait :with_reservation do
-      after(:create) do |dealer_car, _evaluator|
-        create(:reservation, dealer_car_id: dealer_car.id)
-      end
+  trait :with_reservation do
+    after(:create) do |dealer_car, _evaluator|
+      create(:reservation, dealer_car_id: dealer_car.id)
     end
   end
 end

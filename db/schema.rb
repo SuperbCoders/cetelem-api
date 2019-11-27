@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.string "availability"
     t.boolean "custom"
     t.integer "owners_number"
+    t.integer "price"
     t.integer "credit_discount"
     t.integer "insurance_discount"
     t.integer "tradein_discount"
@@ -161,6 +162,7 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.integer "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["login"], name: "index_users_on_login", unique: true
   end
 
   create_table "working_hours", force: :cascade do |t|

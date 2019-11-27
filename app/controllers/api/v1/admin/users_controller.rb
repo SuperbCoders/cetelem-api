@@ -32,6 +32,10 @@ class Api::V1::Admin::UsersController < ApplicationController
     end
   end
 
+  def show
+    render json: user_json(User.find(params[:id]))
+  end
+
   def destroy
     User.find(params[:id]).destroy
     head 204

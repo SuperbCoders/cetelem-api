@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Admin::UsersController, type: :controller do
-  let(:admin) { FactoryBot.create(:user, role: :admin) }
+  let(:admin) { create(:user, role: :admin) }
 
   describe 'GET #index' do
     it 'returns not_authorized' do
@@ -54,18 +54,29 @@ RSpec.describe Api::V1::Admin::UsersController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    it 'returns success' do
+      sign_in_as(admin)
+      user = create(:user, login: 'login', role: :user)
+      get :show, params: { id: user.id }
+
+      expect(response).to have_http_status(:success)
+      expect(response_json).to include('id' => user.id)
+    end
+  end
+
   describe 'PATCH #update' do
     it 'returns unprocessable_entity' do
       sign_in_as(admin)
-      user = FactoryBot.create(:user, login: 'new', role: :user)
+      user = create(:user, login: 'new', role: :user)
       patch :update, params: { id: user.id, login: admin.login, password: 'vbudbvuub123', role: :admin }
 
       expect(response).to have_http_status(:unprocessable_entity)
     end
 
-    it 'returns unprocessable_entity' do
+    it 'returns success' do
       sign_in_as(admin)
-      user = FactoryBot.create(:user, login: 'login', role: :user)
+      user = create(:user, login: 'login', role: :user)
       patch :update, params: { id: user.id, login: 'new_login', password: 'NewPassword1312', role: :admin }
 
       expect(response).to have_http_status(:success)
@@ -82,7 +93,7 @@ RSpec.describe Api::V1::Admin::UsersController, type: :controller do
 
     it 'returns http success' do
       sign_in_as(admin)
-      user = FactoryBot.create(:user, login: 'login', role: :user)
+      user = create(:user, login: 'login', role: :user)
       delete :destroy, params: { id: user.id }
 
       expect(response).to have_http_status(:success)

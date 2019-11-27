@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Admin::DealerCarsController, type: :controller do
-  let(:admin) { FactoryBot.create(:user, role: :admin) }
-  let(:dealer_car) { FactoryBot.create(:dealer_car) }
-  let(:dealer_car_build) { FactoryBot.build(:dealer_car) }
+  let(:admin) { create(:user, role: :admin) }
+  let(:dealer_car) { create(:dealer_car) }
+  let(:dealer_car_build) { build(:dealer_car) }
   let(:dealer_car_params) do
     {
       color: '0R0R',
@@ -13,6 +13,7 @@ RSpec.describe Api::V1::Admin::DealerCarsController, type: :controller do
       availability: 'в наличии',
       custom: true,
       owners_number: 0,
+      price: 1_900_000,
       credit_discount: 100_000,
       insurance_discount: 100_000,
       tradein_discount: 100_000,
@@ -21,8 +22,8 @@ RSpec.describe Api::V1::Admin::DealerCarsController, type: :controller do
       description: 'Продажа авто',
       registry_year: 2019,
       vin: 'WVWZ****ZJE2*****',
-      dealer_id: FactoryBot.create(:dealer).id,
-      car_id: FactoryBot.create(:car).id
+      dealer_id: create(:dealer).id,
+      car_id: create(:car).id
     }
   end
 
@@ -75,6 +76,23 @@ RSpec.describe Api::V1::Admin::DealerCarsController, type: :controller do
       get :show, params: { id: dealer_car.id }
 
       expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe 'PATCH #update' do
+    it 'returns not_authorized' do
+      patch :update, params: { id: dealer_car.id }
+
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    pending it 'updates entity' do
+      sign_in_as(admin)
+      car = DealerCar.create(dealer_car_params)
+      patch :update, params: { id: car.id, availability: 'отсутствует' }
+
+      expect(response).to have_http_status(:success)
+      expect(response_json).to include('availability' => 'отсутствует')
     end
   end
 

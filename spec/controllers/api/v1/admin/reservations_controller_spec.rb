@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Admin::ReservationsController, type: :controller do
-  let(:admin) { FactoryBot.create(:user, role: :admin) }
-  let(:reservation) { FactoryBot.create(:reservation, user_id: admin.id) }
+  let(:admin) { create(:user, role: :admin) }
+  let(:reservation) { create(:reservation, user_id: admin.id) }
 
   describe 'GET #index' do
     it 'returns not_authorized' do

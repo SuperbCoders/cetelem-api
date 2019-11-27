@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::LoginController, type: :controller do
   describe 'GET #create' do
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
     let(:user_params) { { login: user.login, password: user.password } }
 
     it 'returns http success' do

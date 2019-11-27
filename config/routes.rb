@@ -20,13 +20,13 @@ Rails.application.routes.draw do
       end
 
       namespace :admin do
-        resources :users, only: %i[index create update destroy]
+        resources :users, only: %i[index create show update destroy]
 
         resources :register, only: %i[create]
 
         resources :reservations, only: %i[index show]
 
-        resources :dealer_cars, only: %i[index create show destroy]
+        resources :dealer_cars, only: %i[index create show update destroy]
       end
 
       resources :login, only: %i[create]

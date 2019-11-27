@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::DealersController, type: :controller do
-  let(:dealer) { FactoryBot.create(:dealer) }
-  let(:reservation) { FactoryBot.create(:reservation) }
+  let(:dealer) { create(:dealer) }
+  let(:reservation) { create(:reservation) }
 
   describe 'GET #show' do
     it 'returns http not_found' do
