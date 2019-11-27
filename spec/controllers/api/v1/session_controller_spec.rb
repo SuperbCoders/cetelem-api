@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::LoginController, type: :controller do
+RSpec.describe Api::V1::SessionController, type: :controller do
   describe 'GET #create' do
     let(:user) { create(:user) }
     let(:user_params) { { login: user.login, password: user.password } }

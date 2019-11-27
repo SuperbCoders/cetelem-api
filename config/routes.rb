@@ -3,13 +3,13 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :cars, only: %i[show] do
+      resources :dealer_cars, only: %i[index show] do
         member do
           post :book
         end
       end
 
-      namespace :cars do
+      namespace :dealer_cars do
         resources :list, only: %i[index show destroy], param: :dealer_id
         resources :filters, only: %i[index]
         resources :upload, only: %i[create]
@@ -22,14 +22,13 @@ Rails.application.routes.draw do
       namespace :admin do
         resources :users, only: %i[index create show update destroy]
 
-        resources :register, only: %i[create]
-
         resources :reservations, only: %i[index show]
 
         resources :dealer_cars, only: %i[index create show update destroy]
       end
 
-      resources :login, only: %i[create]
+      resources :signup, only: %i[create]
+      resources :session, only: %i[create]
       resources :refresh, only: %i[create]
     end
   end

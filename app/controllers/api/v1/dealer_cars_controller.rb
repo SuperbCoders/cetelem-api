@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-class Api::V1::CarsController < ApplicationController
+class Api::V1::DealerCarsController < ApplicationController
+  def index
+    render json: DealerCar.all.as_json
+  end
+
   def show
     find_car do |car|
       render json: car.as_json

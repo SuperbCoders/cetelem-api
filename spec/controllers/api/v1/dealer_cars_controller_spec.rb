@@ -2,9 +2,26 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::CarsController, type: :controller do
+RSpec.describe Api::V1::DealerCarsController, type: :controller do
   let(:car) { create(:dealer_car) }
   let(:user) { create(:user) }
+
+  describe 'GET #index' do
+    it 'returns http success' do
+      get :index
+
+      expect(response).to have_http_status(:success)
+      expect(response.content_type).to eq('application/json; charset=utf-8')
+      expect(response_json.size).to eq(0)
+    end
+
+    it 'returns correct body' do
+      create(:dealer_car)
+      get :index
+
+      expect(response_json.size).to eq(1)
+    end
+  end
 
   describe 'GET #show' do
     it 'returns http not_found' do

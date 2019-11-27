@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Cars::FiltersController, type: :controller do
+RSpec.describe Api::V1::DealerCars::FiltersController, type: :controller do
   describe 'GET #index' do
     it 'returns http success' do
       get :index

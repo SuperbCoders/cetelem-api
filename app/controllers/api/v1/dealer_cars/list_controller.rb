@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Cars::ListController < ApplicationController
+class Api::V1::DealerCars::ListController < ApplicationController
   def index
     params.require(:available)
     render json: DealerCar.available.as_json

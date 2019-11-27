@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Admin::RegisterController, type: :controller do
+RSpec.describe Api::V1::SignupController, type: :controller do
   describe 'GET #create' do
     it 'returns http success' do
       headers = { 'ACCEPT' => 'application/json', 'HTTP_ACCEPT' => 'application/json' }

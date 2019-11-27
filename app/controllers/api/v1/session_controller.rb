@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::LoginController < ApplicationController
+class Api::V1::SessionController < ApplicationController
   def create
     user = User.find_by!(login: params[:login])
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::Cars::ListController, type: :controller do
+RSpec.describe Api::V1::DealerCars::ListController, type: :controller do
   let(:dealer_car) { create(:dealer_car) }
 
   describe 'GET #index' do
