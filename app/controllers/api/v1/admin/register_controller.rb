@@ -4,7 +4,7 @@ class Api::V1::Admin::RegisterController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      payload = { user_id: user.id, aud: [user.role] }
+      payload = { user_id: user.id, roles: [user.role] }
       session = JWTSessions::Session.new(payload: payload,
                                          refresh_by_access_allowed: true)
       tokens = session.login

@@ -17,6 +17,10 @@ class ApplicationController < ActionController::API
 
   private
 
+  def authenticate_for_role(role)
+    head :forbidden unless payload['roles'].include?(role.to_s)
+  end
+
   def current_user
     @current_user ||= User.find(payload['user_id'])
   end

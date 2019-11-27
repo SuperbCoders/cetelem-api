@@ -20,8 +20,11 @@ Rails.application.routes.draw do
       end
 
       namespace :admin do
+        resources :users, only: %i[index create update destroy]
+
         resources :register, only: %i[create]
       end
+
       resources :login, only: %i[create]
       resources :refresh, only: %i[create]
     end
