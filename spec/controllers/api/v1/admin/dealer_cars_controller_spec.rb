@@ -86,7 +86,7 @@ RSpec.describe Api::V1::Admin::DealerCarsController, type: :controller do
       expect(response).to have_http_status(:unauthorized)
     end
 
-    pending it 'updates entity' do
+    it 'updates entity' do
       sign_in_as(admin)
       car = DealerCar.create(dealer_car_params)
       patch :update, params: { id: car.id, availability: 'отсутствует' }

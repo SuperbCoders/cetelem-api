@@ -13,12 +13,12 @@ class DealerCar < ApplicationRecord
 
   accepts_nested_attributes_for :images, :extra_options
 
-  validates :price, numericality: { only_integer: true }
-  validates :currency, inclusion: { in: %w[rub] }
-  validates :color, :availability, :owners_number,
-            :registry_year, :vin, presence: true
-  validates :custom, inclusion: { in: [true, false, 'true', 'false'] }
-  validates :metallic, inclusion: { in: [true, false, 'true', 'false'] }
+  # validates :price, numericality: true
+  # validates :currency, inclusion: { in: %w[rub] }
+  # validates :color, :availability, :owners_number,
+  #           :registry_year, :vin, presence: true
+  # validates :custom, inclusion: { in: [true, false, 'true', 'false'] }
+  # validates :metallic, inclusion: { in: [true, false, 'true', 'false'] }
 
   scope :available, -> { left_joins(:reservation).where('reservations.id' => nil) }
 end
