@@ -14,4 +14,10 @@ class ApplicationController < ActionController::API
   rescue_from JWTSessions::Errors::Unauthorized do |_exception|
     render json: { error: 'Not authorized' }, status: :unauthorized
   end
+
+  private
+
+  def current_user
+    @current_user ||= User.find(payload['user_id'])
+  end
 end

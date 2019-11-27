@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       namespace :admin do
         resources :register, only: %i[create]
       end
+      resources :login, only: %i[create]
+      resources :refresh, only: %i[create]
     end
   end
 end
