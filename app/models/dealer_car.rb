@@ -11,6 +11,8 @@ class DealerCar < ApplicationRecord
   has_many :images, dependent: :destroy
   has_one :reservation, dependent: :destroy
 
+  accepts_nested_attributes_for :images, :extra_options
+
   validates :price, numericality: { only_integer: true }
   validates :currency, inclusion: { in: %w[rub] }
   validates :color, :availability, :owners_number,
