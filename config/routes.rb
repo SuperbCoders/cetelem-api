@@ -23,6 +23,10 @@ Rails.application.routes.draw do
         resources :users, only: %i[index create update destroy]
 
         resources :register, only: %i[create]
+
+        resources :reservations, only: %i[index show]
+
+        resources :dealer_cars, only: %i[index create show destroy]
       end
 
       resources :login, only: %i[create]

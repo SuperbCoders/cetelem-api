@@ -12,9 +12,10 @@ class DealerCar < ApplicationRecord
   has_one :reservation, dependent: :destroy
 
   validates :currency, inclusion: { in: %w[rub] }
-  validates :color, :metallic, :availability, :owners_number,
+  validates :color, :availability, :owners_number,
             :registry_year, :vin, presence: true
-  validates :custom, inclusion: { in: [true, false] }
+  validates :custom, inclusion: { in: [true, false, 'true', 'false'] }
+  validates :metallic, inclusion: { in: [true, false, 'true', 'false'] }
 
   scope :available, -> { left_joins(:reservation).where('reservations.id' => nil) }
 end
