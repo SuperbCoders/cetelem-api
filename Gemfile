@@ -10,6 +10,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'jwt_sessions'
 gem 'rails', '~> 6.0.1'
 # Use postgresql as the database for Active Record
+gem 'dotenv-rails'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'redis-rails'
 # Use Puma as the app server
