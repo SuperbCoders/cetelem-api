@@ -23,7 +23,7 @@ class Api::V1::SignupController < ApplicationController
   private
 
   def user_params
-    params.require(%i[login password role])
-    params.permit(:login, :password, :role)
+    params.require(%i[login password])
+    params.permit(:login, :password).merge(role: :user)
   end
 end

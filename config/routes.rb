@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :dealer_cars, only: %i[index create show destroy] do
+      resources :dealer_cars, only: %i[index show destroy] do
         member do
           post :book
         end
