@@ -6,6 +6,7 @@ FactoryBot.define do
     drive { :awd }
     gearbox { :robot }
     engine_type { :gasolene }
+    body_type { 'Внедорожник' }
     association :model, factory: :model
   end
 end

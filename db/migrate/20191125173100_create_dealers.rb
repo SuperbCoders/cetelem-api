@@ -11,7 +11,7 @@ class CreateDealers < ActiveRecord::Migration[6.0]
       t.boolean :bonus
       t.text :bonus_description
       t.boolean :used_car_saling
-      t.string :brands, array: true
+      t.string :marks, array: true
 
       t.timestamps
     end

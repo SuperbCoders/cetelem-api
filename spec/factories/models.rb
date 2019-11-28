@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :model do
     name { :Tiguan }
-    association :brand, factory: :brand
+    association :mark, factory: :mark
   end
 end

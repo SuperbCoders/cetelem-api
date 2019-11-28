@@ -32,33 +32,27 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.index ["dealer_id"], name: "index_addresses_on_dealer_id"
   end
 
-  create_table "brands", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "cars", force: :cascade do |t|
     t.string "wheel", limit: 5
     t.integer "year"
-    t.bigint "brand_id", null: false
+    t.bigint "mark_id", null: false
     t.bigint "model_id", null: false
     t.bigint "modification_id", null: false
     t.bigint "complectation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["brand_id"], name: "index_cars_on_brand_id"
     t.index ["complectation_id"], name: "index_cars_on_complectation_id"
+    t.index ["mark_id"], name: "index_cars_on_mark_id"
     t.index ["model_id"], name: "index_cars_on_model_id"
     t.index ["modification_id"], name: "index_cars_on_modification_id"
   end
 
   create_table "complectations", force: :cascade do |t|
     t.string "name"
-    t.bigint "model_id", null: false
+    t.bigint "modification_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["model_id"], name: "index_complectations_on_model_id"
+    t.index ["modification_id"], name: "index_complectations_on_modification_id"
   end
 
   create_table "contact_infos", force: :cascade do |t|
@@ -104,13 +98,14 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.boolean "bonus"
     t.text "bonus_description"
     t.boolean "used_car_saling"
-    t.string "brands", array: true
+    t.string "marks", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "extra_options", force: :cascade do |t|
     t.string "name"
+    t.string "code"
     t.bigint "dealer_car_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -125,20 +120,27 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.index ["dealer_car_id"], name: "index_images_on_dealer_car_id"
   end
 
-  create_table "models", force: :cascade do |t|
+  create_table "marks", force: :cascade do |t|
     t.string "name"
-    t.string "body_type"
-    t.bigint "brand_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["brand_id"], name: "index_models_on_brand_id"
+  end
+
+  create_table "models", force: :cascade do |t|
+    t.string "name"
+    t.bigint "mark_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mark_id"], name: "index_models_on_mark_id"
   end
 
   create_table "modifications", force: :cascade do |t|
     t.string "name"
     t.string "engine_type"
+    t.string "body_type"
     t.string "drive"
     t.string "gearbox"
+    t.string "years"
     t.bigint "model_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -179,18 +181,18 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
   end
 
   add_foreign_key "addresses", "dealers"
-  add_foreign_key "cars", "brands"
   add_foreign_key "cars", "complectations"
+  add_foreign_key "cars", "marks"
   add_foreign_key "cars", "models"
   add_foreign_key "cars", "modifications"
-  add_foreign_key "complectations", "models"
+  add_foreign_key "complectations", "modifications"
   add_foreign_key "contact_infos", "dealers"
   add_foreign_key "contact_infos", "users"
   add_foreign_key "dealer_cars", "cars"
   add_foreign_key "dealer_cars", "dealers"
   add_foreign_key "extra_options", "dealer_cars"
   add_foreign_key "images", "dealer_cars"
-  add_foreign_key "models", "brands"
+  add_foreign_key "models", "marks"
   add_foreign_key "modifications", "models"
   add_foreign_key "reservations", "dealer_cars"
   add_foreign_key "reservations", "users"

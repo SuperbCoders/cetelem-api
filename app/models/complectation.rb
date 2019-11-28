@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class Complectation < ApplicationRecord
-  attr_accessor :name
-
-  belongs_to :model
+  belongs_to :modification
 
   validates :name, presence: true
 end

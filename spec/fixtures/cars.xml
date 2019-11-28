@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<catalog>
+<mark name="Skoda" id="236">
+  <code>SKODA</code>
+  <folder name="Octavia, III" id="50626">
+        <model id="3213">OCTAVIA</model>
+        <generation id="50626">9338208</generation>
+        <modification name="1.4 MT (150 л.с.)" id="20642741">
+            <mark_id>Skoda</mark_id>
+            <folder_id>Octavia, III</folder_id>
+            <modification_id>1.4 MT (150 л.с.)</modification_id>
+            <configuration_id>9338214</configuration_id>
+            <tech_param_id>20642741</tech_param_id>
+            <body_type>Универсал 5 дв.</body_type>
+            <years>2015 - 2017</years>
+            <complectations>
+                <complectation id="20803791">Ambition</complectation>
+                <complectation id="21151161">Style</complectation>
+            </complectations>
+        </modification>
+        <modification name="1.8 AMT (180 л.с.)" id="74530">
+            <mark_id>Skoda</mark_id>
+            <folder_id>Octavia, III</folder_id>
+            <modification_id>1.8 AMT (180 л.с.)</modification_id>
+            <configuration_id>9338209</configuration_id>
+            <tech_param_id>10373615</tech_param_id>
+            <body_type>Лифтбек</body_type>
+            <years>2013 - 2017</years>
+            <complectations>
+                <complectation id="21151162">Style</complectation>
+                <complectation id="20291328">Laurin&amp;Klement</complectation>
+                <complectation id="20803729">Hockey Edition</complectation>
+                <complectation id="20803582">Ambition</complectation>
+            </complectations>
+        </modification>
+        <modification name="2.0d MT (150 л.с.)" id="20699201">
+            <mark_id>Skoda</mark_id>
+            <folder_id>Octavia, III</folder_id>
+            <modification_id>2.0d MT (150 л.с.)</modification_id>
+            <configuration_id>9338209</configuration_id>
+            <tech_param_id>20699201</tech_param_id>
+            <body_type>Лифтбек</body_type>
+            <years>2015 - 2017</years>
+            <complectations></complectations>
+        </modification>
+    </folder>
+  <folder name="Favorit" id="20343286">
+        <model id="48548">FAVORIT</model>
+        <generation id="20343286">20343286</generation>
+        <modification name="1.3 MT (68 л.с.)" id="14790">
+            <mark_id>Skoda</mark_id>
+            <folder_id>Favorit</folder_id>
+            <modification_id>1.3 MT (68 л.с.)</modification_id>
+            <configuration_id>20474455</configuration_id>
+            <tech_param_id>20474473</tech_param_id>
+            <body_type>Хэтчбек 5 дв.</body_type>
+            <years>1994 - 2000</years>
+            <complectations></complectations>
+        </modification>
+        <modification name="1.3 MT (68 л.с.)" id="14797">
+            <mark_id>Skoda</mark_id>
+            <folder_id>Favorit</folder_id>
+            <modification_id>1.3 MT (68 л.с.)</modification_id>
+            <configuration_id>20474422</configuration_id>
+            <tech_param_id>20474442</tech_param_id>
+            <body_type>Универсал 5 дв.</body_type>
+            <years>1994 - 1995</years>
+            <complectations></complectations>
+        </modification>
+    </folder>
+</mark>
+<mark name="IVECO" id="122">
+    <code>IVECO</code>
+    <folder name="Massif" id="20347428">
+        <model id="24247">MASSIF</model>
+        <generation id="20347428">20347428</generation>
+        <modification name="3.0d MT (146 л.с.) 4WD" id="52541">
+            <mark_id>IVECO</mark_id>
+            <folder_id>Massif</folder_id>
+            <modification_id>3.0d MT (146 л.с.) 4WD</modification_id>
+            <configuration_id>20469373</configuration_id>
+            <tech_param_id>20469405</tech_param_id>
+            <body_type>Внедорожник 5 дв.</body_type>
+            <years>2007 - 2011</years>
+            <complectations></complectations>
+        </modification>
+        <modification name="3.0d MT (176 л.с.) 4WD" id="52542">
+            <mark_id>IVECO</mark_id>
+            <folder_id>Massif</folder_id>
+            <modification_id>3.0d MT (176 л.с.) 4WD</modification_id>
+            <configuration_id>20469373</configuration_id>
+            <tech_param_id>20469431</tech_param_id>
+            <body_type>Внедорожник 5 дв.</body_type>
+            <years>2007 - 2011</years>
+            <complectations></complectations>
+        </modification>
+    </folder>
+</mark>
+</catalog>

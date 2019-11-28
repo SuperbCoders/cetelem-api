@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :complectation do
     name { :Sportline }
-    association :model, factory: :model
+    association :modification, factory: :modification
   end
 end

@@ -10,7 +10,7 @@ FactoryBot.define do
     bonus { true }
     bonus_description { 'Дарим бонус при покупке' }
     used_car_saling { false }
-    brands { %w[volkswagen skoda] }
+    marks { %w[volkswagen skoda] }
   end
 
   trait :full do

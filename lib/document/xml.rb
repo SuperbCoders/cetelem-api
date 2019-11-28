@@ -12,18 +12,18 @@ module Document
         {
           dealer_id: @dealer.id,
           car: {
-            brand: {
+            mark: {
               name: item['mark_id']
             },
             model: {
-              name: item['folder_id'],
-              body_type: item['body_type']
+              name: item['folder_id']
             },
             modification: {
               name: item['modification_id'],
               engine_type: :gasolene,
               drive: :awd,
-              gearbox: :manual
+              gearbox: :manual,
+              body_type: 'Внедорожник'
             },
             complectation: {
               name: item['complectation_name']
