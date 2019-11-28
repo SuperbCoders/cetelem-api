@@ -82,7 +82,7 @@ RSpec.describe Api::V1::DealersController, type: :controller do
 
   describe 'POST #upload' do
     it 'returns http success' do
-      post :upload
+      post :upload_xml
       expect(response).to have_http_status(:accepted)
     end
   end

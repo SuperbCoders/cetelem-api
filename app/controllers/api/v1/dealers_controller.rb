@@ -19,7 +19,7 @@ class Api::V1::DealersController < ApplicationController
     render json: DealerCar.available.where(dealer_id: params[:id]).as_json
   end
 
-  def upload
+  def upload_xml
     head 202
   end
 

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
         end
 
         collection do
-          post :upload
+          post :upload_xml
         end
       end
 
