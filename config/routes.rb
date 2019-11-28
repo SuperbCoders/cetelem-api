@@ -3,20 +3,27 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :dealer_cars, only: %i[index show] do
+      resources :dealer_cars, only: %i[index create show destroy] do
         member do
           post :book
         end
-      end
 
-      namespace :dealer_cars do
-        resources :list, only: %i[index show destroy], param: :dealer_id
-        resources :filters, only: %i[index]
-        resources :upload, only: %i[create]
+        collection do
+          delete :destroy_list
+          get :filters
+        end
       end
 
       resources :dealers, only: %i[show] do
         get :reservations
+
+        member do
+          get :cars
+        end
+
+        collection do
+          post :upload
+        end
       end
 
       namespace :admin do

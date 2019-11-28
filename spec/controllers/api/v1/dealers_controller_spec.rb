@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::DealersController, type: :controller do
   let(:dealer) { create(:dealer) }
   let(:reservation) { create(:reservation) }
+  let(:dealer_car) { create(:dealer_car) }
 
   describe 'GET #show' do
     it 'returns http not_found' do
@@ -53,6 +54,36 @@ RSpec.describe Api::V1::DealersController, type: :controller do
       get :reservations, params: { dealer_id: dealer_id }
 
       expect(JSON.parse(response.body).first).to include('id' => reservation.id)
+    end
+  end
+
+  describe 'GET #cars' do
+    it 'returns http success' do
+      get :cars, params: { id: dealer.id }
+
+      expect(response).to have_http_status(:success)
+      expect(response.content_type).to eq('application/json; charset=utf-8')
+      expect(response_json).to be_empty
+    end
+
+    it 'returns correct body' do
+      get :cars, params: { id: dealer_car.dealer_id }
+
+      expect(response).to have_http_status(:success)
+      expect(response_json).not_to be_empty
+    end
+
+    it 'returns http bad_request' do
+      get :cars, params: { id: 0 }
+
+      expect(response).to have_http_status(:bad_request)
+    end
+  end
+
+  describe 'POST #upload' do
+    it 'returns http success' do
+      post :upload
+      expect(response).to have_http_status(:accepted)
     end
   end
 end

@@ -21,6 +21,15 @@ RSpec.describe Api::V1::DealerCarsController, type: :controller do
 
       expect(response_json.size).to eq(1)
     end
+
+    it 'doesnt return reservated cars' do
+      create(:dealer_car, :with_reservation)
+      id = car.id
+      get :index
+
+      expect(response_json.size).to eq(1)
+      expect(response_json.first).to include('id' => id)
+    end
   end
 
   describe 'GET #show' do
@@ -60,6 +69,50 @@ RSpec.describe Api::V1::DealerCarsController, type: :controller do
       post :book, params: { id: 1, user_id: 1 }
 
       expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  describe 'GET #filters' do
+    it 'returns http success' do
+      get :filters
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe 'DELETE #destroy_list' do
+    it 'returns http no_content' do
+      delete :destroy_list, params: { dealer_id: car.dealer_id }
+
+      expect(response).to have_http_status(:no_content)
+    end
+
+    it 'returns http bad_request' do
+      delete :destroy_list, params: { dealer_id: 1 }
+
+      expect(response).to have_http_status(:bad_request)
+    end
+
+    it 'deletes data' do
+      create(:dealer_car)
+
+      delete :destroy_list, params: { dealer_id: car.dealer_id }
+
+      expect(DealerCar.available.where(dealer_id: car.dealer_id).count).to eq(0)
+      expect(DealerCar.available.count).to eq(1)
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'returns http not_found' do
+      delete :destroy, params: { id: 0 }
+
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it 'deletes data' do
+      delete :destroy, params: { id: car.id }
+
+      expect(response).to have_http_status(:success)
     end
   end
 end

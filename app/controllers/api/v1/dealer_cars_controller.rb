@@ -2,7 +2,7 @@
 
 class Api::V1::DealerCarsController < ApplicationController
   def index
-    render json: DealerCar.all.as_json
+    render json: DealerCar.available.all.as_json
   end
 
   def show
@@ -18,6 +18,24 @@ class Api::V1::DealerCarsController < ApplicationController
       car.create_reservation(user_id: params[:user_id])
       head :created
     end
+  end
+
+  def destroy
+    DealerCar.find(params[:id]).destroy
+
+    head :no_content
+  end
+
+  def destroy_list
+    return head 400 unless Dealer.exists?(id: params[:dealer_id])
+
+    DealerCar.available.where(dealer_id: params[:dealer_id]).delete_all
+
+    head :no_content
+  end
+
+  def filters
+    render json: []
   end
 
   private

@@ -13,6 +13,16 @@ class Api::V1::DealersController < ApplicationController
     render json: Reservation.for_dealer(params[:dealer_id]).as_json
   end
 
+  def cars
+    return head 400 unless Dealer.exists?(id: params[:id])
+
+    render json: DealerCar.available.where(dealer_id: params[:id]).as_json
+  end
+
+  def upload
+    head 202
+  end
+
   private
 
   def find_dealer
