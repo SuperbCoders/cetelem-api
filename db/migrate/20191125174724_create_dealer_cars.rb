@@ -5,7 +5,6 @@ class CreateDealerCars < ActiveRecord::Migration[6.0]
     create_table :dealer_cars do |t|
       t.string :color
       t.string :wheel
-      t.string :color
       t.string :engine_type
       t.boolean :metallic
       t.string :availability
@@ -18,6 +17,7 @@ class CreateDealerCars < ActiveRecord::Migration[6.0]
       t.integer :max_discount
       t.string :currency, limit: 10
       t.text :description
+      t.integer :year
       t.integer :registry_year
       t.string :vin, limit: 30
       t.string :integer, limit: 30
