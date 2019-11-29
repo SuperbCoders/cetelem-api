@@ -23,6 +23,9 @@ gem 'jwt_sessions'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+# Activerecord import libraty
+gem 'activerecord-import'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -35,6 +38,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-json_expectations'
   gem 'rspec-rails'
+  gem 'rubocop'
 end
 
 group :development do

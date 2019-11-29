@@ -2,9 +2,6 @@
 
 FactoryBot.define do
   factory :car do
-    year { 2019 }
-    wheel { :left }
-
     association :mark, factory: :mark
     association :model, factory: :model
     association :modification, factory: :modification

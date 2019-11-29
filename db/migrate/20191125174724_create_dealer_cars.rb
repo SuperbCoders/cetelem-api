@@ -4,10 +4,12 @@ class CreateDealerCars < ActiveRecord::Migration[6.0]
   def change
     create_table :dealer_cars do |t|
       t.string :color
+      t.string :wheel
+      t.engine_type :color
       t.boolean :metallic
       t.string :availability
       t.boolean :custom
-      t.integer :owners_number
+      t.string :owners_number
       t.integer :price
       t.integer :credit_discount
       t.integer :insurance_discount
@@ -17,6 +19,7 @@ class CreateDealerCars < ActiveRecord::Migration[6.0]
       t.text :description
       t.integer :registry_year
       t.string :vin, limit: 30
+      t.string :integer, limit: 30
 
       t.references :car, index: true, foreign_key: true, null: false
       t.references :dealer, index: true, foreign_key: true, null: false

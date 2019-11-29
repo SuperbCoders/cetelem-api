@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :mark do
-    name { :Volkswagen }
+    sequence(:name) { |n| "Volkswagen#{n}" }
   end
 end

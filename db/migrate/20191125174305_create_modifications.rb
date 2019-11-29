@@ -3,8 +3,9 @@
 class CreateModifications < ActiveRecord::Migration[6.0]
   def change
     create_table :modifications do |t|
-      t.string :name
+      t.string :name, null: false
       t.string :engine_type
+      t.string :engine_power
       t.string :body_type
       t.string :drive
       t.string :gearbox
@@ -13,5 +14,6 @@ class CreateModifications < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index(:modifications, [:name, :body_type, :engine_type, :engine_power, :drive, :gearbox,:years], unique: true, name: "uniq_modification")
   end
 end
