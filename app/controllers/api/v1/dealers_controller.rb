@@ -2,9 +2,7 @@
 
 class Api::V1::DealersController < ApplicationController
   def show
-    find_dealer do |dealer|
-      render json: dealer.as_json
-    end
+    find_dealer
   end
 
   def reservations
@@ -26,7 +24,7 @@ class Api::V1::DealersController < ApplicationController
   private
 
   def find_dealer
-    dealer = Dealer.find(params[:id])
-    yield(dealer)
+    @dealer = Dealer.find(params[:id])
+    yield(dealer) if block_given?
   end
 end

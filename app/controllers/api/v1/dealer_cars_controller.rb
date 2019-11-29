@@ -6,9 +6,7 @@ class Api::V1::DealerCarsController < ApplicationController
   end
 
   def show
-    find_car do |car|
-      render json: car.as_json
-    end
+    find_car
   end
 
   def book
@@ -35,13 +33,13 @@ class Api::V1::DealerCarsController < ApplicationController
   end
 
   def filters
-    render json: []
+
   end
 
   private
 
   def find_car
-    car = DealerCar.find(params[:id])
-    yield(car)
+    @car = DealerCar.find(params[:id])
+    yield(car) if block_given?
   end
 end

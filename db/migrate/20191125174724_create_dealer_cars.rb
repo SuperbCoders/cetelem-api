@@ -5,7 +5,8 @@ class CreateDealerCars < ActiveRecord::Migration[6.0]
     create_table :dealer_cars do |t|
       t.string :color
       t.string :wheel
-      t.engine_type :color
+      t.string :color
+      t.string :engine_type
       t.boolean :metallic
       t.string :availability
       t.boolean :custom
