@@ -24,7 +24,7 @@ RSpec.describe Api::V1::DealersController, type: :controller do
     it 'returns correct body' do
       get :show, params: { id: dealer.id }
 
-      expect(JSON.parse(response.body)).to include('id' => dealer.id)
+      expect(response_json).to include('id' => dealer.id)
     end
   end
 

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
 class ExtraOption < ApplicationRecord
-  belongs_to :dealer_car
+  self.inheritance_column = :_type_disabled
+
+  validates :name, uniqueness: { case_sensitive: false }
 end

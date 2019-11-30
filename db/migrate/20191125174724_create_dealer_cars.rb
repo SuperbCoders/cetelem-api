@@ -27,5 +27,11 @@ class CreateDealerCars < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    create_table :dealer_car_extra_options do |t|
+      t.references :extra_option, index: true, foreign_key: true, null: true
+      t.references :dealer_car, index: true, foreign_key: true, null: true
+      t.timestamps
+    end
   end
 end

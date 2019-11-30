@@ -3,11 +3,16 @@
 class DealerCar < ApplicationRecord
   belongs_to :car
   belongs_to :dealer
-  has_many :extra_options, dependent: :destroy
   has_many :images, dependent: :destroy
   has_one :reservation, dependent: :destroy
+  has_many :dealer_car_extra_options, dependent: :destroy
+  has_many :extra_options, through: :dealer_car_extra_options
 
-  accepts_nested_attributes_for :images, :extra_options
+  accepts_nested_attributes_for :images
+
+  before_destroy do
+    dealer_car_extra_options.delete_all
+  end
 
   # validates :price, numericality: true
   # validates :currency, inclusion: { in: %w[rub] }

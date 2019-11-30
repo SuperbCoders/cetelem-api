@@ -2,8 +2,9 @@
 
 class ApplicationController < ActionController::API
   include JWTSessions::RailsAuthorization
-  include ActionController::ImplicitRender
+  # include ActionController::ImplicitRender
   include ActionController::Caching
+  include ActionController::Serialization
 
   before_action :set_default_response_format
 
@@ -32,7 +33,7 @@ class ApplicationController < ActionController::API
     head :forbidden unless payload['roles'].include?(role.to_s)
   end
 
-  def current_user
-    @current_user ||= User.find(payload['user_id'])
-  end
+  # def current_user
+  #   @current_user ||= User.find(payload['user_id'])
+  # end
 end

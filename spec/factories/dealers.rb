@@ -11,12 +11,12 @@ FactoryBot.define do
     bonus_description { 'Дарим бонус при покупке' }
     used_car_saling { false }
     marks { %w[volkswagen skoda] }
-  end
 
-  trait :full do
-    after(:create) do |dealer, _evaluator|
-      create(:address, dealer_id: dealer.id)
-      create(:working_hour, dealer_id: dealer.id)
+    trait :full do
+      after(:create) do |dealer, _evaluator|
+        create(:address, dealer_id: dealer.id)
+        create(:working_hour, dealer_id: dealer.id)
+      end
     end
   end
 end

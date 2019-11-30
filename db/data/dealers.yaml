@@ -1,0 +1,39 @@
+-
+  code:
+     12_356
+  official_dealer:
+     true
+  legal_name:
+     'Германика'
+  trade_name:
+     'Германика'
+  distributor:
+     'VAG'
+  bonus:
+     true
+  bonus_description:
+     'Дарим бонус при покупке'
+  used_car_saling:
+     false
+  marks:
+   - volkswagen
+   - skoda
+-
+  code:
+     12_355
+  official_dealer:
+     true
+  legal_name:
+     'Автомир'
+  trade_name:
+     'Автомир'
+  distributor:
+     'Автомир'
+  bonus:
+     true
+  bonus_description:
+     'Дарим бонус при покупке'
+  used_car_saling:
+     true
+  marks:
+   - mazda

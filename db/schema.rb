@@ -66,12 +66,23 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.index ["user_id"], name: "index_contact_infos_on_user_id"
   end
 
+  create_table "dealer_car_extra_options", force: :cascade do |t|
+    t.bigint "extra_option_id"
+    t.bigint "dealer_car_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dealer_car_id"], name: "index_dealer_car_extra_options_on_dealer_car_id"
+    t.index ["extra_option_id"], name: "index_dealer_car_extra_options_on_extra_option_id"
+  end
+
   create_table "dealer_cars", force: :cascade do |t|
     t.string "color"
+    t.string "wheel"
+    t.string "engine_type"
     t.boolean "metallic"
     t.string "availability"
     t.boolean "custom"
-    t.integer "owners_number"
+    t.string "owners_number"
     t.integer "price"
     t.integer "credit_discount"
     t.integer "insurance_discount"
@@ -79,8 +90,10 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
     t.integer "max_discount"
     t.string "currency", limit: 10
     t.text "description"
+    t.integer "year"
     t.integer "registry_year"
     t.string "vin", limit: 30
+    t.string "integer", limit: 30
     t.bigint "car_id", null: false
     t.bigint "dealer_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -104,12 +117,11 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
   end
 
   create_table "extra_options", force: :cascade do |t|
-    t.string "name"
-    t.string "code"
-    t.bigint "dealer_car_id", null: false
+    t.string "name", null: false
+    t.string "type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["dealer_car_id"], name: "index_extra_options_on_dealer_car_id"
+    t.index ["name"], name: "index_extra_options_on_name", unique: true
   end
 
   create_table "images", force: :cascade do |t|
@@ -192,9 +204,10 @@ ActiveRecord::Schema.define(version: 2019_11_25_175706) do
   add_foreign_key "complectations", "models"
   add_foreign_key "contact_infos", "dealers"
   add_foreign_key "contact_infos", "users"
+  add_foreign_key "dealer_car_extra_options", "dealer_cars"
+  add_foreign_key "dealer_car_extra_options", "extra_options"
   add_foreign_key "dealer_cars", "cars"
   add_foreign_key "dealer_cars", "dealers"
-  add_foreign_key "extra_options", "dealer_cars"
   add_foreign_key "images", "dealer_cars"
   add_foreign_key "models", "marks"
   add_foreign_key "modifications", "models"

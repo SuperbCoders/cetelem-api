@@ -2,9 +2,7 @@
 
 FactoryBot.define do
   factory :extra_option do
-    code { 'AC3' }
-    name { 'Сиситема курсовой устойчивости' }
-
-    association :dealer_car, factory: :dealer_car
+    type { 'Обзор' }
+    sequence(:name) { |n| "name_#{n}" }
   end
 end

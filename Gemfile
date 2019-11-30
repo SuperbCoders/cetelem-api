@@ -14,7 +14,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
+gem 'active_model_serializers'
+
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -37,8 +38,11 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-json_expectations'
-  gem 'rspec-rails'
   gem 'rubocop'
+
+  # rails 6 has bug with rspec, https://github.com/rspec/rspec-rails/issues/2177
+  # gem 'rspec-rails'
+  gem 'rspec-rails', '4.0.0.beta3'
 end
 
 group :development do
