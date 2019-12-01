@@ -38,7 +38,7 @@ end
 # create cars dictionary
 begin
   Modification.delete_all
-  Copmlectation.delete_all
+  Complectation.delete_all
   Model.delete_all
   Mark.delete_all
 
