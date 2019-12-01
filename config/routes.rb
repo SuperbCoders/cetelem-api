@@ -35,6 +35,8 @@ Rails.application.routes.draw do
         resources :reservations, only: %i[index show]
 
         resources :dealer_cars, only: %i[index create show update destroy]
+
+        resources :cars, only: %i[index show update destroy]
       end
 
       resources :signup, only: %i[create]

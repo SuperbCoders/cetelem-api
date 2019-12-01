@@ -4,6 +4,16 @@
 
 # create dealers
 begin
+  User.delete_all
+  puts '### importing users'
+  YAML::load(File.open("./db/data/users.yaml")).each { |user| User.create(user) }
+rescue => e
+  puts 'Failed to import users'
+  puts e.message
+end
+
+# create dealers
+begin
   Dealer.delete_all
   puts '### importing dealers'
   Dealer.import(YAML::load(File.open("./db/data/dealers.yaml")))

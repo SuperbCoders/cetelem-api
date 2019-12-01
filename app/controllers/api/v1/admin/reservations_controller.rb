@@ -7,10 +7,10 @@ class Api::V1::Admin::ReservationsController < ApplicationController
   end
 
   def index
-    render json: Reservation.all.as_json
+    render json: Reservation.all
   end
 
   def show
-    Reservation.find(params[:id]).as_json
+    Reservation.find(params[:id])
   end
 end

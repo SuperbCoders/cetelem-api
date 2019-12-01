@@ -6,15 +6,16 @@ class Car < ApplicationRecord
   belongs_to :modification
   belongs_to :complectation, optional: true
 
-  # validates :year, numericality: { only_integer: true }
-  # validates :wheel, inclusion: { in: %i[left right] }
+  def full_update(params)
+    mark.update(name: params[:mark]) if params[:mark].present?
 
-  def to_builder
-    Jbuilder.new do |car|
-      car.(self, *DealerCar.column_names)
-      car.extra_options(self.extra_options, :code, :name)
-      car.images(self.images, :url)
-      car.reservation(self.reservation, :phone, :email, :user_id, :created_at) if car.reservation
-    end
+    model.update(name: params[:model]) if params[:mark].present?
+
+    complectation.update(name: params[:complectation]) if params[:complectation].present?
+
+    modification.update(
+      name: params[:modification].presence || modification.name,
+      body_type: params[:body_type].presence || modification.body_type,
+      years: params[:years].presence || modification.years)
   end
 end

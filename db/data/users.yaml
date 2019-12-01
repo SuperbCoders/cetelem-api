@@ -1,0 +1,21 @@
+-
+  login:
+     admin
+  password:
+     '12345678'
+  role:
+     admin
+-
+  login:
+     user
+  password:
+     '12345678'
+  role:
+     user
+-
+  login:
+     dealer
+  password:
+     '12345678'
+  role:
+     dealer
