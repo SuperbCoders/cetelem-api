@@ -1,6 +1,6 @@
 class Api::V1::Admin::CarsController < ApplicationController
   def index
-    render json: Car.all
+    render json: Car.all.limit(100)
   end
 
   def show
