@@ -32,7 +32,7 @@ module DealerCarImport
         vin: car_node.xpath('vin').text.squish,
         currency: car_node.xpath('currency').text.squish,
         description: car_node.xpath('description').text.squish,
-        images: car_node.xpath('images//image').map { |i| Image.new(url: i) },
+        images: car_node.xpath('images//image').map { |i| Image.new(url: i.text.squish) },
         extra_options: car_node.xpath('extras').text.split(',').
                          map { |i| ExtraOption.find_by(name: i.squish) }.compact
       )
