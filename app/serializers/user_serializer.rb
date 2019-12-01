@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord
-  attributes :login, :role
+class UserSerializer < ActiveModel::Serializer
+  attributes :id, :login, :role
 end

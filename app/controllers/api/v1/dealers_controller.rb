@@ -20,7 +20,12 @@ class Api::V1::DealersController < ApplicationController
   end
 
   def upload_xml
-    head 202
+    find_dealer do |dealer|
+      dealer.xmls.attach(params[:xml])
+      DealerCarUploadJob.perform_later(dealer.xmls.last, dealer)
+    end
+
+    head :accepted
   end
 
   private

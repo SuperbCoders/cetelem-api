@@ -82,8 +82,11 @@ RSpec.describe Api::V1::DealersController, type: :controller do
 
   describe 'POST #upload' do
     it 'returns http success' do
-      post :upload_xml
+      file = fixture_file_upload('data.xml', 'text/xml')
+      post :upload_xml, params: { id: dealer.id, xml: file }
+
       expect(response).to have_http_status(:accepted)
+      expect(dealer.xmls.count).to eq(1)
     end
   end
 end

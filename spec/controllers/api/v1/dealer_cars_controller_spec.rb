@@ -48,7 +48,7 @@ RSpec.describe Api::V1::DealerCarsController, type: :controller do
 
     it 'returns correct body' do
       get :show, params: { id: car.id }
-binding.pry
+
       expect(response_json).to include('id' => car.id)
       expect(response_json['extra_options']).to be_a(Array)
       expect(response_json['images']).to be_a(Array)
