@@ -5,7 +5,7 @@ class Api::V1::Admin::CarsController < ApplicationController
   end
 
   def index
-    render json: Car.all.limit(100)
+    paginate json: Car.all.limit(100)
   end
 
   def show

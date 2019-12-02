@@ -15,6 +15,8 @@ gem 'puma', '~> 4.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'active_model_serializers'
+gem 'will_paginate'
+gem 'api-pagination'
 
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 4.0'

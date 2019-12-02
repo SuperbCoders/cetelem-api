@@ -2,9 +2,9 @@
 
 class ApplicationController < ActionController::API
   include JWTSessions::RailsAuthorization
-  # include ActionController::ImplicitRender
   include ActionController::Caching
   include ActionController::Serialization
+  include Rails::Pagination
 
   before_action :set_default_response_format
 
