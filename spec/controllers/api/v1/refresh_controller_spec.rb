@@ -25,12 +25,12 @@ RSpec.describe Api::V1::RefreshController, type: :controller do
         post :create
 
         expect(response).to be_successful
-        expect(response_json.keys.sort).to eq ['csrf']
+        expect(response_json.keys).to eq ['csrf']
         expect(response.cookies[JWTSessions.access_cookie]).to be_present
       end
     end
 
-    context 'failure' do
+    context 'refreshes token' do
       before do
         payload = { user_id: user.id }
         session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
@@ -42,7 +42,7 @@ RSpec.describe Api::V1::RefreshController, type: :controller do
         request.headers[JWTSessions.csrf_header] = csrf_token
         post :create
 
-        expect(response).to have_http_status(401)
+        expect(response).to have_http_status(200)
       end
     end
   end
