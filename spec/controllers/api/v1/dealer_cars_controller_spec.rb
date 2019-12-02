@@ -77,12 +77,12 @@ RSpec.describe Api::V1::DealerCarsController, type: :controller do
     end
   end
 
-  describe 'GET #filters' do
-    it 'returns http success' do
-      get :filters
-      expect(response).to have_http_status(:success)
-    end
-  end
+  # describe 'GET #filters' do
+  #   it 'returns http success' do
+  #     get :filters
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
 
   describe 'DELETE #destroy_list' do
     it 'returns http no_content' do

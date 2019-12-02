@@ -13,9 +13,10 @@ Rails.application.routes.draw do
 
         collection do
           delete :destroy_list
-          get :filters
         end
       end
+
+      # resources :car_filters, only: %i[index show], param: :filter
 
       resources :dealers, only: %i[show] do
         get :reservations
@@ -26,6 +27,18 @@ Rails.application.routes.draw do
 
         collection do
           post :upload_xml
+        end
+      end
+
+      namespace :filters do
+        resources :marks, only: %i[index] do
+          resources :models, only: %i[index] do
+            resources :modifications, only: %i[index] do
+            end
+
+            resources :complectations, only: %i[index] do
+            end
+          end
         end
       end
 
