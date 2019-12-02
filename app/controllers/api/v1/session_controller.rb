@@ -13,7 +13,7 @@ class Api::V1::SessionController < ApplicationController
                           httponly: true,
                           secure: Rails.env.production?)
 
-      render json: { csrf: tokens[:csrf] }
+      render json: { csrf: tokens[:csrf], user: UserSerializer.new(user) }
     else
       not_authorized
     end

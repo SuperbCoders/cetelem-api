@@ -11,7 +11,7 @@ RSpec.describe Api::V1::Filters::ComplectationsController, type: :controller do
 
       expect(response).to have_http_status(:success)
       expect(response.content_type).to eq('application/json; charset=utf-8')
-      expect(response_json.dig('complectation', 'options').first['id']).to eq(complectation.id)
+      expect(response_json.dig('complectation', 'options').last['id']).to eq(complectation.id)
     end
   end
 end

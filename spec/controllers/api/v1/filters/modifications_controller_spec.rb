@@ -11,7 +11,7 @@ RSpec.describe Api::V1::Filters::ModificationsController, type: :controller do
 
       expect(response).to have_http_status(:success)
       expect(response.content_type).to eq('application/json; charset=utf-8')
-      expect(response_json.dig('modification', 'options').first['id']).to eq(modification.id)
+      expect(response_json.dig('modification', 'options').last['id']).to eq(modification.id)
     end
   end
 end

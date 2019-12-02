@@ -12,7 +12,7 @@ RSpec.describe Api::V1::SignupController, type: :controller do
       post :create, params: body
 
       expect(response).to be_successful
-      expect(JSON.parse(response.body).keys).to eq ['csrf']
+      expect(JSON.parse(response.body).keys).to eq ['csrf', 'user']
       expect(response.cookies[JWTSessions.access_cookie]).to be_present
     end
   end

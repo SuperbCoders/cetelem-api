@@ -11,7 +11,7 @@ RSpec.describe Api::V1::SessionController, type: :controller do
       post :create, params: user_params
 
       expect(response).to be_successful
-      expect(response_json.keys).to eq ['csrf']
+      expect(response_json.keys).to eq ['csrf', 'user']
       expect(response.cookies[JWTSessions.access_cookie]).to be_present
     end
 
