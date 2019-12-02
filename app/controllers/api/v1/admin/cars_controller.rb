@@ -1,4 +1,9 @@
 class Api::V1::Admin::CarsController < ApplicationController
+  before_action do
+    authorize_by_access_cookie!
+    authenticate_for_role(:admin)
+  end
+
   def index
     render json: Car.all.limit(100)
   end
