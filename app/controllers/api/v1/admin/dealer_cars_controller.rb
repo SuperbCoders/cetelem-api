@@ -7,7 +7,7 @@ class Api::V1::Admin::DealerCarsController < ApplicationController
   end
 
   def index
-    render json: DealerCar.all
+    paginate json: DealerCar.all
   end
 
   def create

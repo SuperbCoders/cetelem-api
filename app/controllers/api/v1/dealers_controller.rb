@@ -10,7 +10,7 @@ class Api::V1::DealersController < ApplicationController
   def reservations
     return head 400 unless Dealer.exists?(id: params[:dealer_id])
 
-    render json: Reservation.for_dealer(params[:dealer_id])
+    paginate json: Reservation.for_dealer(params[:dealer_id])
   end
 
   def cars
