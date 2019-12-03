@@ -40,6 +40,10 @@ Rails.application.routes.draw do
             end
           end
         end
+
+        resources :dealer_cars, only: :index
+
+        resources :extra_options, only: :index
       end
 
       namespace :admin do

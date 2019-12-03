@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class DealerCar < ApplicationRecord
+  COLORS = %w[Бежевый Белый Голубой Желтый Зеленый Золотой Коричневый Красный Оранжевый Пурпурный
+    Розовый Серебряный Серый Синий Фиолетовый Черный].freeze()
+  WHEELS = %w[Левый Правый].freeze()
+  ENGINE_TYPES = %w[ Бензин Дизель Гибрид Электро ГБО Водородный.].freeze()
+
   belongs_to :car
   belongs_to :dealer
   has_many :images, dependent: :destroy
