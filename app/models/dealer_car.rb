@@ -5,6 +5,8 @@ class DealerCar < ApplicationRecord
     Розовый Серебряный Серый Синий Фиолетовый Черный].freeze()
   WHEELS = %w[Левый Правый].freeze()
   ENGINE_TYPES = %w[ Бензин Дизель Гибрид Электро ГБО Водородный.].freeze()
+  STATES = ["Отличное", "Хорошее", "Среднее", "Требует ремонта"].freeze()
+  OWNERS_NUMBER = ["Один владелец", "Два владельца", "Три и более"].freeze()
 
   belongs_to :car
   belongs_to :dealer

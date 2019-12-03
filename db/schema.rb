@@ -115,7 +115,8 @@ ActiveRecord::Schema.define(version: 2019_12_01_063041) do
     t.integer "year"
     t.integer "registry_year"
     t.string "vin", limit: 30
-    t.string "integer", limit: 30
+    t.integer "run"
+    t.string "state", limit: 20
     t.bigint "car_id", null: false
     t.bigint "dealer_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -173,8 +174,10 @@ ActiveRecord::Schema.define(version: 2019_12_01_063041) do
   create_table "modifications", force: :cascade do |t|
     t.string "name", null: false
     t.string "engine_type"
-    t.string "engine_power"
+    t.integer "engine_hp"
+    t.float "engine_volume"
     t.string "body_type"
+    t.integer "doors_count"
     t.string "drive"
     t.string "gearbox"
     t.string "years"
@@ -182,7 +185,7 @@ ActiveRecord::Schema.define(version: 2019_12_01_063041) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["model_id"], name: "index_modifications_on_model_id"
-    t.index ["name", "body_type", "engine_type", "engine_power", "drive", "gearbox", "years"], name: "uniq_modification", unique: true
+    t.index ["name", "body_type", "doors_count", "engine_type", "engine_hp", "drive", "gearbox", "years"], name: "uniq_modification", unique: true
   end
 
   create_table "reservations", force: :cascade do |t|

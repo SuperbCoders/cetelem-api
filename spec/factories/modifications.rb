@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :modification do
-    name { '1.4 TSI (150)' }
+    name { '1.4 TSI (150 л.c.)' }
     drive { :awd }
     gearbox { :robot }
     engine_type { :gasolene }

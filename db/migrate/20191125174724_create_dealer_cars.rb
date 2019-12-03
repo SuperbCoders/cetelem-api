@@ -20,7 +20,8 @@ class CreateDealerCars < ActiveRecord::Migration[6.0]
       t.integer :year
       t.integer :registry_year
       t.string :vin, limit: 30
-      t.string :integer, limit: 30
+      t.integer :run
+      t.string :state, limit: 20
 
       t.references :car, index: true, foreign_key: true, null: false
       t.references :dealer, index: true, foreign_key: true, null: false

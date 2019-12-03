@@ -30,6 +30,8 @@ module DealerCarImport
         tradein_discount: car_node.xpath('tradein_discount').text.squish,
         max_discount: car_node.xpath('max_discount').text.squish,
         vin: car_node.xpath('vin').text.squish,
+        state: car_node.xpath('state')&.text&.squish,
+        run: car_node.xpath('vin')&.text&.squish,
         currency: car_node.xpath('currency').text.squish,
         description: car_node.xpath('description').text.squish,
         images: car_node.xpath('images//image').map { |i| Image.new(url: i.text.squish) },
