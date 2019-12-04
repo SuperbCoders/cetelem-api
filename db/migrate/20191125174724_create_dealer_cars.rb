@@ -9,6 +9,7 @@ class CreateDealerCars < ActiveRecord::Migration[6.0]
       t.boolean :metallic
       t.string :availability
       t.boolean :custom
+      t.boolean :new, default: true
       t.string :owners_number
       t.integer :price
       t.integer :credit_discount

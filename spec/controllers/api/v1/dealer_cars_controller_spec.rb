@@ -59,19 +59,21 @@ RSpec.describe Api::V1::DealerCarsController, type: :controller do
 
   describe 'POST #book' do
     it 'returns http success' do
-      post :book, params: { id: car.id, user_id: user.id }
+      sign_in_as(user)
+      post :book, params: { id: car.id}
 
       expect(response).to have_http_status(:created)
     end
 
-    it 'returns http bad_request' do
-      post :book, params: { id: car.id, user_id: 1 }
+    it 'returns http unauthorized' do
+      post :book, params: { id: car.id }
 
-      expect(response).to have_http_status(:bad_request)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it 'returns http not_found' do
-      post :book, params: { id: 1, user_id: 1 }
+      sign_in_as(user)
+      post :book, params: { id: 0 }
 
       expect(response).to have_http_status(:not_found)
     end

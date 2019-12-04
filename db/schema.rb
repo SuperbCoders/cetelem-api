@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 2019_12_01_063041) do
     t.boolean "metallic"
     t.string "availability"
     t.boolean "custom"
+    t.boolean "new", default: true
     t.string "owners_number"
     t.integer "price"
     t.integer "credit_discount"

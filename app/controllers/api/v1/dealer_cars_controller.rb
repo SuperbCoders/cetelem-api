@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::DealerCarsController < ApplicationController
+  before_action :authorize_by_access_cookie!, only: :book
+
   def index
     paginate json: DealerCar.available.all
   end
@@ -13,9 +15,10 @@ class Api::V1::DealerCarsController < ApplicationController
 
   def book
     find_car do |car|
-      return head 400 unless User.exists?(id: params[:user_id])
+      return head 401 unless User.exists?(id: current_user.id)
 
-      car.create_reservation(user_id: params[:user_id])
+      car.create_reservation(user_id: current_user.id)
+
       head :created
     end
   end
@@ -42,5 +45,9 @@ class Api::V1::DealerCarsController < ApplicationController
   def find_car
     @car = DealerCar.find(params[:id])
     yield(@car) if block_given?
+  end
+
+  def car_params
+    params.permit(:mark_id, :model_id, :modification_id, :complectation_id )
   end
 end

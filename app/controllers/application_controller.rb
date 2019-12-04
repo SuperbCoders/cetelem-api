@@ -33,7 +33,9 @@ class ApplicationController < ActionController::API
     head :forbidden unless payload['roles'].include?(role.to_s)
   end
 
-  # def current_user
-  #   @current_user ||= User.find(payload['user_id'])
-  # end
+  def current_user
+    @current_user ||= User.find_by(id: payload['user_id'])
+    rescue JWTSessions::Errors::Unauthorized
+      nil
+  end
 end
