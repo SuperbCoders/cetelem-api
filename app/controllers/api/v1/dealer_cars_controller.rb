@@ -7,7 +7,7 @@ class Api::V1::DealerCarsController < ApplicationController
     cars = DealerCar.available
                     .where_dealer_car(dealer_car_params).where_car(car_params).where_modifications(modification_params)
 
-    paginate json: cars, each_serializer: ::ShortDealerCarSerializer
+    paginate json: cars
   end
 
   def show

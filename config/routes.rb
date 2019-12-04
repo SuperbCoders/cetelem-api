@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
@@ -47,6 +48,8 @@ Rails.application.routes.draw do
 
         resources :dealers, only: :index
       end
+
+      resources :current_user, only: :index
 
       namespace :admin do
         resources :users, only: %i[index create show update destroy]
