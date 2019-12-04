@@ -6,6 +6,8 @@ class Car < ApplicationRecord
   belongs_to :modification
   belongs_to :complectation, optional: true
 
+  has_many :dealer_cars
+
   def full_update(params)
     mark.update(name: params[:mark]) if params[:mark].present?
 
@@ -16,6 +18,7 @@ class Car < ApplicationRecord
     modification.update(
       name: params[:modification].presence || modification.name,
       body_type: params[:body_type].presence || modification.body_type,
-      years: params[:years].presence || modification.years)
+      years: params[:years].presence || modification.years
+    )
   end
 end

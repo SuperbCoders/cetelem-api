@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
+require_relative 'concerns/queryable'
+
 class DealerCar < ApplicationRecord
+  include Queryable
+
   COLORS = %w[Бежевый Белый Голубой Желтый Зеленый Золотой Коричневый Красный Оранжевый Пурпурный
-    Розовый Серебряный Серый Синий Фиолетовый Черный].freeze()
-  WHEELS = %w[Левый Правый].freeze()
-  ENGINE_TYPES = %w[ Бензин Дизель Гибрид Электро ГБО Водородный.].freeze()
-  STATES = ["Отличное", "Хорошее", "Среднее", "Требует ремонта"].freeze()
-  OWNERS_NUMBER = ["Один владелец", "Два владельца", "Три и более"].freeze()
+              Розовый Серебряный Серый Синий Фиолетовый Черный].freeze
+  WHEELS = %w[Левый Правый].freeze
+  ENGINE_TYPES = %w[Бензин Дизель Гибрид Электро ГБО Водородный.].freeze
+  STATES = ['Отличное', 'Хорошее', 'Среднее', 'Требует ремонта'].freeze
+  OWNERS_NUMBER = ['Один владелец', 'Два владельца', 'Три и более'].freeze
 
   belongs_to :car
   belongs_to :dealer

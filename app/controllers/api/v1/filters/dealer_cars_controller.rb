@@ -14,18 +14,18 @@ class Api::V1::Filters::DealerCarsController < ApplicationController
       new:
         { type: 'BOOLEAN', text: 'Новые', options: [true, false] },
       year:
-        { type: 'SELECT', text: 'Год', options: (1890..Date.today.year).to_a },
+        { type: 'RANGE', text: 'Год', min: 1890, max: Date.today.year },
       price:
         { type: 'RANGE', text: 'Цена', min: 1, max: 1_000_000_000 },
       run:
         { type: 'RANGE', text: 'Цена', min: 0, max: 1_000_000 },
-      'modifications.body_type':
+      body_type:
         { type: 'SELECT', text: 'Руль', options: Modification::BODY_TYPES },
-      'modifications.engine_hp':
+      engine_hp:
         { type: 'RANGE', text: 'Мощность (в л/с)', min: 0, max: 5_000 },
-      'modifications.engine_volume':
-        { type: 'SELECT', text: '', options: (0.2..10.0).step(0.2).map { |i| i.round(1) } }
-      }
+      engine_volume:
+        { type: 'RANGE', text: 'Объем двигателя', min: 0, max: 10 }
+    }
 
     render json: response
   end

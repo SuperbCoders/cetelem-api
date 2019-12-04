@@ -4,7 +4,10 @@ class Api::V1::DealerCarsController < ApplicationController
   before_action :authorize_by_access_cookie!, only: :book
 
   def index
-    paginate json: DealerCar.available.all
+    cars = DealerCar.available
+                    .where_dealer_car(dealer_car_params).where_car(car_params).where_modifications(modification_params)
+
+    paginate json: cars
   end
 
   def show
@@ -37,9 +40,6 @@ class Api::V1::DealerCarsController < ApplicationController
     head :no_content
   end
 
-  def filters
-  end
-
   private
 
   def find_car
@@ -48,6 +48,23 @@ class Api::V1::DealerCarsController < ApplicationController
   end
 
   def car_params
-    params.permit(:mark_id, :model_id, :modification_id, :complectation_id )
+    params.permit(:mark_id, :model_id, :modification_id, :complectation_id)
+  end
+
+  def modification_params
+    new = params.permit(:body_type)
+    new.merge!(engine_hp: params[:engine_hp][:min].to_i..params[:engine_hp][:max].to_i) if params[:engine_hp]
+    new.merge!(engine_volume: params[:engine_volume][:min].to_i..params[:engine_volume][:max].to_i) if params[:engine_volume]
+
+    new
+  end
+
+  def dealer_car_params
+    new = params.permit(:dealer_id, :color, :wheel, :engine_type, :state, :new)
+    new.merge!(year: params[:year][:min].to_i..params[:year][:max].to_i) if params[:year]
+    new.merge!(price: params[:price][:min].to_i..params[:price][:max].to_i) if params[:price]
+    new.merge!(run: params[:run][:min].to_i..params[:run][:max].to_i) if params[:run]
+
+    new
   end
 end

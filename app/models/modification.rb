@@ -2,7 +2,8 @@
 
 class Modification < ApplicationRecord
   belongs_to :model
-  has_many :complectations
+
+  has_many :cars
 
   BODY_TYPES = ['Кабриолет', 'Компактвэн', 'Купе', 'Купе-хардтоп', 'Фастбек',
                 'Фургон', 'Хэтчбек', 'Ландо', 'Лифтбек', 'Лимузин', 'Микровэн', 'Минивэн',
@@ -15,8 +16,8 @@ class Modification < ApplicationRecord
   # validates :body_type, inclusion: { in: BODY_TYPES }
 
   before_create do |modification|
-    modification.engine_hp ||=  modification.name[/\(.* л\.с\.\)/, 0]&.gsub(/[()]/, "")
-    modification.engine_volume ||=  modification.name[/\d\.\d/, 0]
-    modification.doors_count ||=  modification.body_type[/\d/, 0]
+    modification.engine_hp ||= modification.name[/\(.* л\.с\.\)/, 0]&.gsub(/[()]/, '')
+    modification.engine_volume ||= modification.name[/\d\.\d/, 0]
+    modification.doors_count ||= modification.body_type[/\d/, 0]
   end
 end
