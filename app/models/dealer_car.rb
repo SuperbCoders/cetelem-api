@@ -33,4 +33,21 @@ class DealerCar < ApplicationRecord
   # validates :metallic, inclusion: { in: [true, false, 'true', 'false'] }
 
   scope :available, -> { left_joins(:reservation).where('reservations.id' => nil) }
+
+  def full
+    attributes.merge(
+      mark: car.mark.name,
+      model: car.model.name,
+      complectation: car.complectation.name,
+      modification: car.modification.name,
+      engine_type: car.modification.engine_type,
+      engine_hp: car.modification.engine_hp,
+      engine_volume: car.modification.engine_volume,
+      doors_count: car.modification.doors_count,
+      body_type: car.modification.body_type,
+      years: car.modification.years,
+      extra_options: extra_options.as_json(only: %i[name type]),
+      images: images.map(&:url)
+    )
+  end
 end

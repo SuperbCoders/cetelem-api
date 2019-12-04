@@ -22,14 +22,14 @@ class Api::V1::Admin::DealerCarsController < ApplicationController
   end
 
   def show
-    render json: DealerCar.find(params[:id])
+    render json: DealerCar.find(params[:id]).full
   end
 
   def update
     dealer_car = DealerCar.find(params[:id])
 
     if dealer_car.update(car_params)
-      render json: dealer_car
+      render json: dealer_car.full
     else
       render json: { error: dealer_car.errors.full_messages.join(' ') },
              status: :unprocessable_entity

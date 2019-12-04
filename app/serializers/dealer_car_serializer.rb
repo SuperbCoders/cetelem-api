@@ -1,9 +1,19 @@
+# frozen_string_literal: true
+
 class DealerCarSerializer < ActiveModel::Serializer
-  attributes *DealerCar.column_names
+  attributes :id, :price, :mark, :model, :modification
 
-
-  belongs_to :car, serializer: CarSerializer
   has_many :images, serializer: ImageSerializer
-  has_one :reservation, serializer: ReservationSerializer
-  has_many :extra_options, serializer: ExtraOptionSerializer
+
+  def mark
+    object.car.mark.name
+  end
+
+  def model
+    object.car.model.name
+  end
+
+  def modification
+    object.car.modification.name
+  end
 end
