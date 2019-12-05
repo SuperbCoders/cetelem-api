@@ -22,7 +22,7 @@ bundle install
 bundle exec rake db:create
 ```
 
-* Database initialization
+* Database migration
 
 ```ruby
 bundle exec rake db:migrate
@@ -33,7 +33,6 @@ bundle exec rake db:migrate
 ```ruby
 bundle exec rspec
 ```
-
 
 ## Http methods
 
@@ -78,4 +77,52 @@ DELETE /api/v1/admin/cars/:id
 POST   /api/v1/signup
 POST   /api/v1/session
 POST   /api/v1/refresh
+```
+### Allow params for /api/v1/filters/dealer_cars
+```
+mark_id=1
+model_id=1
+modification_id=1
+complectation_id=1
+
+
+body_type=Лифтбек
+
+engine_hp[:min]=1
+engine_hp[:max]=1
+
+engine_volume[:min]=1
+engine_volume[:max]=1
+
+dealer_id=1
+color=Белый
+wheel=Левый
+engine_type=Бензин
+state=Отличное
+new=1
+
+year[:min]=1
+year[:max]=1
+
+price[:min]=1
+price[:max]=1
+
+run[:min]=1
+run[:max]=1
+```
+
+### App Services
+* Импорт данных из xml словаря
+
+```ruby
+CarImport.call(path)
+```
+
+* Импорт данных из xml словаря
+```ruby
+DealerCarImport.call(path, dealer: Dealer.find(:id))
+```
+### App Jobs
+```ruby
+DealerCarUploadJob
 ```
