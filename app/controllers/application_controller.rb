@@ -23,6 +23,16 @@ class ApplicationController < ActionController::API
 
   protected
 
+  def paginate(collection)
+    per_page = (params[:per_page] || WillPaginate.per_page).to_i
+    number = collection[:json].size / per_page
+    number += 1 if (collection[:json].size % per_page) > 0
+
+    response.set_header('X-Pages-Number', number)
+
+    super(collection)
+  end
+
   def set_default_response_format
     request.format = :json
   end

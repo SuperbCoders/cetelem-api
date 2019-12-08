@@ -1,5 +1,7 @@
 class CarSerializer < ActiveModel::Serializer
-  attributes :id, :mark, :model, :modification, :body_type, :years, :complectation
+  attributes :id, :mark, :model, :modification, :body_type, :years, :complectation,
+             :created_at, :updated_at
+
   def mark
     object.mark.name
   end
