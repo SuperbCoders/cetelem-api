@@ -46,6 +46,8 @@ class DealerCar < ApplicationRecord
       doors_count: car.modification.doors_count,
       body_type: car.modification.body_type,
       years: car.modification.years,
+      dealer_id: dealer_id,
+      dealer_name: dealer.legal_name,
       extra_options: extra_options.as_json(only: %i[name type]),
       images: images.map(&:url)
     )

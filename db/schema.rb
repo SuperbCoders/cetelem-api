@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_01_063041) do
+ActiveRecord::Schema.define(version: 2019_12_09_091719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,6 +206,8 @@ ActiveRecord::Schema.define(version: 2019_12_01_063041) do
     t.integer "role", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "dealer_id"
+    t.index ["dealer_id"], name: "index_users_on_dealer_id"
     t.index ["login"], name: "index_users_on_login", unique: true
   end
 
@@ -240,5 +242,6 @@ ActiveRecord::Schema.define(version: 2019_12_01_063041) do
   add_foreign_key "modifications", "models"
   add_foreign_key "reservations", "dealer_cars"
   add_foreign_key "reservations", "users"
+  add_foreign_key "users", "dealers"
   add_foreign_key "working_hours", "dealers"
 end

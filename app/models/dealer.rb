@@ -5,6 +5,8 @@ class Dealer < ApplicationRecord
   has_one :working_hour
 
   has_many :dealer_cars
+  has_many :users
+
   has_many_attached :xmls
 
   validates :code, :legal_name, :trade_name, presence: true

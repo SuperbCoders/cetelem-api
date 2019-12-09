@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_secure_password :recovery_password, validations: false
 
   has_one :contact_info
+  belongs_to :dealer, optional: true
 
   enum role: %i[user dealer admin].freeze
 
