@@ -44,6 +44,6 @@ class Api::V1::Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:login, :password, :role)
+    params.permit(:login, :password, :role, :dealer_id)
   end
 end
