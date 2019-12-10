@@ -49,6 +49,6 @@ class Api::V1::Admin::DealerCarsController < ApplicationController
                   :color, :metallic, :availability, :custom,
                   :owners_number, :price, :credit_discount,
                   :insurance_discount, :tradein_discount, :max_discount,
-                  :currency, :description, :registry_year, :vin)
+                  :currency, :description, :registry_year, :vin, images: [])
   end
 end

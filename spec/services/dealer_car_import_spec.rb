@@ -39,7 +39,7 @@ RSpec.describe DealerCarImport do
     expect(car.car.modification.name).to eq("1.6 CVT (117 л.с.)")
     expect(car.car.complectation.name).to eq("LE")
     expect(car.extra_options.count).to eq(4)
-    expect(car.images.count).to eq(2)
+    expect(car.images.count).to eq(1)
   end
 
   # it 'it reloads data correctly' do

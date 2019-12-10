@@ -28,8 +28,7 @@
       </description>
   	  <extras>Антиблокировочная система (ABS), Бортовой компьютер, Климат-контроль 1-зонный, Круиз-контроль</extras>
   	  <images>
-  	        <image>http://price.site.ru/files/image1.jpg</image>
-                 <image>http://price.site.ru/files/image2.jpg</image>
+  	        <image>http://images.freeimages.com/images/large-previews/0c8/auto-rai-2-1467980.jpg</image>
            </images>
   	  <poi_id>г. Воронеж, Дорожная 125</poi_id>
 	  </car>
@@ -59,8 +58,7 @@
            </description>
   	  <extras>Климат (кондиционер), Круиз-контроль, Мультимедиа (CD), Обогрев сидений</extras>
   	  <images>
-  		   <image>http://price.site.ru/files/image5.jpg</image>
-  		   <image>http://price.site.ru/files/image6.jpg</image>
+  		   <image>http://images.freeimages.com/images/large-previews/0c8/auto-rai-2-1467980.jpg</image>
            </images>
   	  <poi_id>г. Воронеж, Дорожная 125</poi_id>
 	   </car>

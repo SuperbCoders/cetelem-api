@@ -15,11 +15,13 @@ class DealerCar < ApplicationRecord
   belongs_to :car
   belongs_to :dealer
   has_many :images, dependent: :destroy
+  has_many_attached :xmls
   has_one :reservation, dependent: :destroy
   has_many :dealer_car_extra_options, dependent: :destroy
   has_many :extra_options, through: :dealer_car_extra_options
 
-  accepts_nested_attributes_for :images
+  has_many_attached :images
+  # accepts_nested_attributes_for :images
 
   before_destroy do
     dealer_car_extra_options.delete_all
@@ -49,7 +51,7 @@ class DealerCar < ApplicationRecord
       dealer_id: dealer_id,
       dealer_name: dealer.legal_name,
       extra_options: extra_options.as_json(only: %i[name type]),
-      images: images.map(&:url)
+      images: images.map { |i| rails_blob_path(i, only_path: true) }
     )
   end
 end

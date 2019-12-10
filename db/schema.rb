@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2019_12_10_082309) do
     t.string "city", null: false
     t.string "street"
     t.string "building", limit: 10
-    t.integer "region_code"
     t.point "location"
     t.bigint "dealer_id", null: false
     t.datetime "created_at", precision: 6, null: false

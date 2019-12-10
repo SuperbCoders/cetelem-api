@@ -27,7 +27,6 @@ FactoryBot.define do
     trait :full_car do
       after(:create) do |dealer_car, _evaluator|
         create(:reservation, dealer_car_id: dealer_car.id)
-        create(:image, dealer_car_id: dealer_car.id)
       end
     end
   end
