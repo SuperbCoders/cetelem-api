@@ -5,10 +5,8 @@ FactoryBot.define do
     country { 'РФ' }
     postcode { '111245' }
     region { 'Московская Область' }
-    distriсt { 'Восточный' }
-    area { '' }
     city { 'Москва' }
-    locality { '' }
+    street { 'wcsa' }
     building { '21' }
     region_code { 44 }
     # location { '' }

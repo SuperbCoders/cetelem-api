@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_091719) do
+ActiveRecord::Schema.define(version: 2019_12_10_082309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,13 +38,11 @@ ActiveRecord::Schema.define(version: 2019_12_09_091719) do
   end
 
   create_table "addresses", force: :cascade do |t|
-    t.string "country"
-    t.string "postcode", limit: 20
-    t.string "region"
-    t.string "distriсt"
-    t.string "area"
-    t.string "city"
-    t.string "locality"
+    t.string "country", null: false
+    t.string "postcode", limit: 20, null: false
+    t.string "region", null: false
+    t.string "city", null: false
+    t.string "street"
     t.string "building", limit: 10
     t.integer "region_code"
     t.point "location"
@@ -138,6 +136,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_091719) do
     t.string "marks", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "rate", limit: 2
   end
 
   create_table "extra_options", force: :cascade do |t|
