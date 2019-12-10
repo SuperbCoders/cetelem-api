@@ -2,11 +2,11 @@
 
 class Dealer < ApplicationRecord
   has_one :address, dependent: :destroy
-  has_one :working_hour
+  has_one :working_hour, dependent: :destroy
 
-  has_many :dealer_cars
-  has_many :users
-  has_many :contact_infos
+  has_many :dealer_cars, dependent: :destroy
+  has_many :users, dependent: :destroy
+  has_many :contact_infos, dependent: :destroy
 
   has_many_attached :xmls
 
