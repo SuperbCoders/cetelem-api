@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
       # resources :car_filters, only: %i[index show], param: :filter
 
-      resources :dealers, only: %i[show] do
+      resources :dealers, only: %i[show update] do
         get :reservations
 
         member do
