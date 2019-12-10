@@ -8,18 +8,20 @@ class Api::V1::DealersController < ApplicationController
   end
 
   def reservations
-    return head 400 unless Dealer.exists?(id: params[:dealer_id])
+    return head 404 unless Dealer.exists?(id: params[:dealer_id])
 
     paginate json: Reservation.for_dealer(params[:dealer_id])
   end
 
   def cars
-    return head 400 unless Dealer.exists?(id: params[:id])
+    return head 404 unless Dealer.exists?(id: params[:id])
 
     paginate json: DealerCar.available.where(dealer_id: params[:id])
   end
 
   def upload_xml
+    return 400 unless params[:xml].present?
+
     find_dealer do |dealer|
       dealer.xmls.attach(params[:xml])
       DealerCarUploadJob.perform_later(dealer.xmls.last, dealer)

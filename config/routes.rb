@@ -24,9 +24,6 @@ Rails.application.routes.draw do
 
         member do
           get :cars
-        end
-
-        collection do
           post :upload_xml
         end
       end
