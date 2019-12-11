@@ -4,6 +4,7 @@ require_relative 'concerns/queryable'
 
 class DealerCar < ApplicationRecord
   include Queryable
+  include Rails.application.routes.url_helpers
 
   COLORS = %w[Бежевый Белый Голубой Желтый Зеленый Золотой Коричневый Красный Оранжевый Пурпурный
               Розовый Серебряный Серый Синий Фиолетовый Черный].freeze
@@ -14,14 +15,13 @@ class DealerCar < ApplicationRecord
 
   belongs_to :car
   belongs_to :dealer
-  has_many :images, dependent: :destroy
+
   has_many_attached :xmls
   has_one :reservation, dependent: :destroy
   has_many :dealer_car_extra_options, dependent: :destroy
   has_many :extra_options, through: :dealer_car_extra_options
 
   has_many_attached :images
-  # accepts_nested_attributes_for :images
 
   before_destroy do
     dealer_car_extra_options.delete_all
