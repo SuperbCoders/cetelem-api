@@ -18,11 +18,12 @@ class Api::V1::DealerCarsController < ApplicationController
 
   def book
     find_car do |car|
-      # return head 401 unless User.exists?(id: current_user.id)
+      return head 403 if car.reservation.present?
 
-      car.create_reservation(params.permit(:name, :phone, :email, :client_id))
+      params.require(:name, :phone)
+      reservation = car.create_reservation(params.permit(:name, :phone, :email, :client_id))
 
-      head :created
+      render json: reservation, status: 201
     end
   end
 

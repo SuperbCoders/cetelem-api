@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::Admin::ReservationsController, type: :controller do
   let(:admin) { create(:user, role: :admin) }
-  let(:reservation) { create(:reservation, user_id: admin.id) }
+  let(:reservation) { create(:reservation) }
 
   describe 'GET #index' do
     it 'returns not_authorized' do
