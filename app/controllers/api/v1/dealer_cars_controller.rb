@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::DealerCarsController < ApplicationController
-  before_action :authorize_by_access_cookie!, only: :book
+  # before_action :authorize_by_access_cookie!, only: :book
 
   def index
     cars = DealerCar.available
@@ -18,9 +18,9 @@ class Api::V1::DealerCarsController < ApplicationController
 
   def book
     find_car do |car|
-      return head 401 unless User.exists?(id: current_user.id)
+      # return head 401 unless User.exists?(id: current_user.id)
 
-      car.create_reservation(user_id: current_user.id)
+      car.create_reservation(params.permit(:name, :phone, :email, :client_id))
 
       head :created
     end

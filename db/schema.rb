@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_082309) do
+ActiveRecord::Schema.define(version: 2019_12_11_091127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_12_10_082309) do
     t.string "city", null: false
     t.string "street"
     t.string "building", limit: 10
+    t.integer "region_code"
     t.point "location"
     t.bigint "dealer_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -190,12 +191,12 @@ ActiveRecord::Schema.define(version: 2019_12_10_082309) do
   create_table "reservations", force: :cascade do |t|
     t.string "phone", limit: 16
     t.string "email"
-    t.bigint "user_id", null: false
     t.bigint "dealer_car_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.integer "client_id"
     t.index ["dealer_car_id"], name: "index_reservations_on_dealer_car_id"
-    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -239,7 +240,6 @@ ActiveRecord::Schema.define(version: 2019_12_10_082309) do
   add_foreign_key "models", "marks"
   add_foreign_key "modifications", "models"
   add_foreign_key "reservations", "dealer_cars"
-  add_foreign_key "reservations", "users"
   add_foreign_key "users", "dealers"
   add_foreign_key "working_hours", "dealers"
 end
