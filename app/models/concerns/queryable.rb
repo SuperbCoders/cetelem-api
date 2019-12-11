@@ -9,7 +9,7 @@ module Queryable
     scope :where_car, lambda { |params|
       return all if params.empty?
 
-      joins(:car).where(car: params)
+      joins(:car).where(cars: params)
     }
 
     scope :where_dealer_car, lambda { |params|

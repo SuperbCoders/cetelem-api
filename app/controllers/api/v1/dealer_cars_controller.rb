@@ -49,7 +49,7 @@ class Api::V1::DealerCarsController < ApplicationController
   end
 
   def car_params
-    params.permit(:mark_id, :model_id, :modification_id, :complectation_id)
+    params.permit(:mark_id, :model_id, :modification_id, :complectation_id).to_h
   end
 
   def modification_params
@@ -57,7 +57,7 @@ class Api::V1::DealerCarsController < ApplicationController
     new.merge!(engine_hp: params[:engine_hp][:min].to_i..params[:engine_hp][:max].to_i) if params[:engine_hp]
     new.merge!(engine_volume: params[:engine_volume][:min].to_i..params[:engine_volume][:max].to_i) if params[:engine_volume]
 
-    new
+    new.to_h
   end
 
   def dealer_car_params
@@ -66,6 +66,6 @@ class Api::V1::DealerCarsController < ApplicationController
     new.merge!(price: params[:price][:min].to_i..params[:price][:max].to_i) if params[:price]
     new.merge!(run: params[:run][:min].to_i..params[:run][:max].to_i) if params[:run]
 
-    new
+    new.to_h
   end
 end
