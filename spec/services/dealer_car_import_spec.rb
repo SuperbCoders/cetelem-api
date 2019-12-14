@@ -10,11 +10,11 @@ RSpec.describe DealerCarImport do
   end
 
   it 'persists dealer cars' do
-    described_class.call("#{Rails.root}/spec/fixtures/data.xml", dealer: dealer)
+    described_class.call("#{Rails.root}/spec/fixtures/data.xml", owner: dealer)
 
-    expect(dealer.dealer_cars.count).to eq(2)
+    expect(dealer.cars.count).to eq(2)
 
-    car = dealer.dealer_cars.first
+    car = dealer.cars.first
 
     expect(car.attributes).to include(
       "color"=>"белый",

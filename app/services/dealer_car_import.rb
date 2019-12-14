@@ -3,10 +3,10 @@
 require 'open-uri'
 
 module DealerCarImport
-  def self.call(path = "#{Rails.root}/spec/fixtures/data.xml", dealer:)
+  def self.call(path = "#{Rails.root}/spec/fixtures/data.xml", owner:)
     puts '###### STARTS Uploading DealerCars'
 
-    dealer.dealer_cars.destroy_all
+    owner.cars.available.destroy_all
 
     Nokogiri::XML(File.read(path)).xpath('//car').each do |car_node|
       mark = Mark.find_by(name: car_node.xpath('mark_id').text.squish)
@@ -15,9 +15,9 @@ module DealerCarImport
       complectation = model.complectations.find_by(name: car_node.xpath('complectation_name').text.squish)
       car = Car.find_by(mark: mark,model: model,modification: modification,complectation: complectation)
 
-      car =
-        dealer.dealer_cars.create!(
-          car: car, dealer: dealer,
+      dealer_car =
+        owner.cars.create!(
+          car: car,
           wheel: car_node.xpath('wheel').text.squish,
           engine_type: car_node.xpath('engine_type').text.squish,
           color: car_node.xpath('color').text.squish,
@@ -44,7 +44,7 @@ module DealerCarImport
         downloaded_image = open(i.text)
         downloaded_image.rewind
 
-        car.images.attach(io: downloaded_image, filename: "car_#{Time.now.to_i}.jpg")
+        dealer_car.images.attach(io: downloaded_image, filename: "car_#{Time.now.to_i}.jpg")
       end
     end
 

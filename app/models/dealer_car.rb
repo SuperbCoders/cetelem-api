@@ -17,7 +17,7 @@ class DealerCar < ApplicationRecord
   belongs_to :owner, polymorphic: true
 
   has_many_attached :xmls
-  has_one :reservation, dependent: :destroy
+  has_one :reservation
   has_many :dealer_car_extra_options, dependent: :destroy
   has_many :extra_options, through: :dealer_car_extra_options
 
