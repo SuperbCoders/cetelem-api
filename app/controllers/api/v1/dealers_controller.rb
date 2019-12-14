@@ -25,9 +25,9 @@ class Api::V1::DealersController < ApplicationController
   end
 
   def cars
-    return head 404 unless Dealer.exists?(id: params[:id])
+    cars = Dealer.find(params[:id]).all_cars.available
 
-    paginate json: DealerCar.available.where(dealer_id: params[:id])
+    paginate json: cars
   end
 
   def upload_xml

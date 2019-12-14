@@ -14,7 +14,7 @@ class Api::V1::Admin::DealerCarsController < ApplicationController
     dealer_car = DealerCar.new(car_params)
 
     if dealer_car.save
-      render json: dealer_car
+      render json: dealer_car.full
     else
       render json: { error: dealer_car.errors.full_messages.join(' ') },
              status: :unprocessable_entity
@@ -45,7 +45,7 @@ class Api::V1::Admin::DealerCarsController < ApplicationController
   private
 
   def car_params
-    params.permit(:dealer_id, :car_id,
+    params.permit(:car_id, :dealer_id, :dealer_group_id,
                   :color, :metallic, :availability, :custom,
                   :owners_number, :price, :credit_discount,
                   :insurance_discount, :tradein_discount, :max_discount,

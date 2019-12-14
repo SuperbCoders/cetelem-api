@@ -18,6 +18,6 @@ RSpec.describe DealerCarUploadJob, type: :job do
 
     described_class.perform_now(dealer.xmls.last, dealer)
     expect(dealer.xmls.last.status).to eq("done")
-    expect(dealer.dealer_cars.count).to eq(2)
+    expect(dealer.cars.count).to eq(2)
   end
 end

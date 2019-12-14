@@ -88,11 +88,39 @@ RSpec.describe Api::V1::Admin::DealerCarsController, type: :controller do
 
     it 'updates entity' do
       sign_in_as(admin)
-      car = DealerCar.create(dealer_car_params)
+      dealer = create(:dealer)
+      car = dealer.cars.create(dealer_car_params.except(:dealer_id))
       patch :update, params: { id: car.id, availability: 'отсутствует' }
 
       expect(response).to have_http_status(:success)
       expect(response_json).to include('availability' => 'отсутствует')
+    end
+
+    it 'it sets new owners' do
+      sign_in_as(admin)
+
+      dealer = create(:dealer)
+      group = create(:dealer_group)
+      car = dealer.cars.create(dealer_car_params.except(:dealer_id))
+
+      patch :update, params: { id: car.id, dealer_group_id: group.id }
+
+      expect(response).to have_http_status(:success)
+      expect(response_json).to include(
+        'dealer_group_id' => group.id,
+        'owner_type' => 'DealerGroup')
+    end
+
+    it 'returns unprocessable_entity' do
+      sign_in_as(admin)
+
+      car = create(:dealer_car)
+
+      patch :update, params: { id: car.id, dealer_group_id: 0 }
+      expect(response).to have_http_status(:unprocessable_entity)
+
+      patch :update, params: { id: car.id, dealer_id: 0 }
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 

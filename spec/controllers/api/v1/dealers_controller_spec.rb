@@ -36,7 +36,7 @@ RSpec.describe Api::V1::DealersController, type: :controller do
     end
 
     it 'returns http success' do
-      dealer_id = reservation.dealer_car.dealer_id
+      dealer_id = reservation.dealer_car.owner_id
       get :reservations, params: { dealer_id: dealer_id }
 
       expect(response).to have_http_status(:success)
@@ -50,7 +50,7 @@ RSpec.describe Api::V1::DealersController, type: :controller do
     end
 
     it 'returns correct body' do
-      dealer_id = reservation.dealer_car.dealer_id
+      dealer_id = reservation.dealer_car.owner_id
       get :reservations, params: { dealer_id: dealer_id }
 
       expect(JSON.parse(response.body).first).to include('id' => reservation.id)
@@ -67,7 +67,7 @@ RSpec.describe Api::V1::DealersController, type: :controller do
     end
 
     it 'returns correct body' do
-      get :cars, params: { id: dealer_car.dealer_id }
+      get :cars, params: { id: dealer_car.owner_id }
 
       expect(response).to have_http_status(:success)
       expect(response_json).not_to be_empty

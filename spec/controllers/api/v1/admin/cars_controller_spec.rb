@@ -8,6 +8,7 @@ RSpec.describe Api::V1::Admin::CarsController, type: :controller do
     create(:car)
     sign_in_as(admin)
   end
+
   describe "GET #index" do
     it "returns http success" do
       get :index

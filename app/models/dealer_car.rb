@@ -36,6 +36,24 @@ class DealerCar < ApplicationRecord
 
   scope :available, -> { left_joins(:reservation).where('reservations.id' => nil) }
 
+  def dealer_id
+    owner_id if owner_type == "Dealer"
+  end
+
+  def dealer_group_id
+    owner_id if owner_type == "DealerGroup"
+  end
+
+  def dealer_id=(val)
+    self.owner_id = val
+    self.owner_type = "Dealer"
+  end
+
+  def dealer_group_id=(val)
+    self.owner_id = val
+    self.owner_type = "DealerGroup"
+  end
+
   def full
     attributes.merge(
       mark: car.mark.name,
@@ -48,8 +66,11 @@ class DealerCar < ApplicationRecord
       doors_count: car.modification.doors_count,
       body_type: car.modification.body_type,
       years: car.modification.years,
-      dealer_id: dealer_id,
-      dealer_name: dealer.legal_name,
+      owner_id: owner_id,
+      owner_type: owner_type,
+      dealer_name: owner.name,
+      delaer_id: dealer_id,
+      dealer_group_id: dealer_group_id,
       extra_options: extra_options.as_json(only: %i[name type]),
       images: images.map { |i| rails_blob_path(i, only_path: true) }
     )

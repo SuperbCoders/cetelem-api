@@ -17,6 +17,8 @@ class Dealer < ApplicationRecord
   validates :code, :legal_name, :trade_name, presence: true
   validates :official_dealer, :used_car_saling, inclusion: { in: [true, false] }
 
+  alias_attribute :name, :legal_name
+
   def all_cars
     DealerCar.where(owner: self).or(  DealerCar.where(owner: dealer_group))
   end

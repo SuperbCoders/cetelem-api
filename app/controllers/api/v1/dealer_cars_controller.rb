@@ -4,8 +4,12 @@ class Api::V1::DealerCarsController < ApplicationController
   # before_action :authorize_by_access_cookie!, only: :book
 
   def index
-    cars = DealerCar.available
-                    .where_dealer_car(dealer_car_params).where_car(car_params).where_modifications(modification_params)
+    cars =
+      (params[:dealer_id] ? Dealer.find(params[:dealer_id]).all_cars : DealerCar).
+        available.
+        where_dealer_car(dealer_car_params).
+        where_car(car_params).
+        where_modifications(modification_params)
 
     paginate json: cars
   end
@@ -34,9 +38,13 @@ class Api::V1::DealerCarsController < ApplicationController
   end
 
   def destroy_list
-    return head 400 unless Dealer.exists?(id: params[:dealer_id])
-
-    DealerCar.available.where(dealer_id: params[:dealer_id]).destroy_all
+    if params[:dealer_id]
+      Dealer.find(params[:dealer_id]).cars.available.destroy_all
+    elsif params[:dealer_group_id]
+      DealerGroup.find(params[:dealer_group_id]).cars.available.destroy_all
+    else
+      return head :bad_request
+    end
 
     head :no_content
   end
@@ -61,7 +69,7 @@ class Api::V1::DealerCarsController < ApplicationController
   end
 
   def dealer_car_params
-    new = params.permit(:dealer_id, :color, :wheel, :engine_type, :state, :new)
+    new = params.permit(:color, :wheel, :engine_type, :state, :new)
     new.merge!(year: params[:year][:min].to_i..params[:year][:max].to_i) if params[:year]
     new.merge!(price: params[:price][:min].to_i..params[:price][:max].to_i) if params[:price]
     new.merge!(run: params[:run][:min].to_i..params[:run][:max].to_i) if params[:run]

@@ -58,52 +58,43 @@ RSpec.describe Api::V1::DealerCarsController, type: :controller do
 
   describe 'POST #book' do
     it 'returns http success' do
-      sign_in_as(user)
-      post :book, params: { id: car.id }
+      post :book, params: { id: car.id, name: "bvcip", phone: "89111232121" }
 
       expect(response).to have_http_status(:created)
     end
 
-    # it 'returns http unauthorized' do
-    #   post :book, params: { id: car.id }
-    #
-    #   expect(response).to have_http_status(:unauthorized)
-    # end
-
     it 'returns http not_found' do
-      sign_in_as(user)
-      post :book, params: { id: 0 }
+      post :book, params: {  id: 0, name: "bvcip", phone: "89111232121" }
 
       expect(response).to have_http_status(:not_found)
     end
-  end
 
-  # describe 'GET #filters' do
-  #   it 'returns http success' do
-  #     get :filters
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+    it 'returns http bad_request' do
+      post :book, params: { id: car.id }
+
+      expect(response).to have_http_status(:bad_request)
+    end
+  end
 
   describe 'DELETE #destroy_list' do
     it 'returns http no_content' do
-      delete :destroy_list, params: { dealer_id: car.dealer_id }
+      delete :destroy_list, params: { dealer_id: car.owner_id }
 
       expect(response).to have_http_status(:no_content)
     end
 
     it 'returns http bad_request' do
-      delete :destroy_list, params: { dealer_id: 1 }
+      delete :destroy_list, params: { dealer_id: 0 }
 
-      expect(response).to have_http_status(:bad_request)
+      expect(response).to have_http_status(:not_found)
     end
 
     it 'deletes data' do
       create(:dealer_car)
 
-      delete :destroy_list, params: { dealer_id: car.dealer_id }
+      delete :destroy_list, params: { dealer_id: car.owner_id }
 
-      expect(DealerCar.available.where(dealer_id: car.dealer_id).count).to eq(0)
+      expect(DealerCar.available.where(owner_id: car.owner_id, owner_type: :Dealer).count).to eq(0)
       expect(DealerCar.available.count).to eq(1)
     end
   end

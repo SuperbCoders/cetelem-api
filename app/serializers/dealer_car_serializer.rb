@@ -3,8 +3,8 @@
 class DealerCarSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :price, :mark, :model, :modification, :dealer_id, :dealer_name,
-             :created_at, :updated_at, :images
+  attributes :id, :price, :mark, :model, :modification, :owner_id, :owner_type,
+             :dealer_name, :created_at, :updated_at, :images, :dealer_id, :dealer_group_id
 
   # has_many :images, serializer: ImageSerializer
 
@@ -21,7 +21,7 @@ class DealerCarSerializer < ActiveModel::Serializer
   end
 
   def dealer_name
-    object.dealer.legal_name
+    object.owner.name
   end
 
   def images
