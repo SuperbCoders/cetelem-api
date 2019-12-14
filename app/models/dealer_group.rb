@@ -5,4 +5,8 @@ class DealerGroup < ApplicationRecord
   has_many :dealers
 
   has_many_attached :xmls
+
+  before_destroy do
+    dealers.destroy_all
+  end
 end

@@ -58,6 +58,8 @@ Rails.application.routes.draw do
         resources :cars, only: %i[index show update destroy]
 
         resources :dealers, only: %i[index show create update destroy]
+
+        resources :dealer_groups, only: %i[index show create update destroy]
       end
 
       resources :signup, only: %i[create]
