@@ -14,7 +14,7 @@ class DealerCar < ApplicationRecord
   OWNERS_NUMBER = ['Один владелец', 'Два владельца', 'Три и более'].freeze
 
   belongs_to :car
-  belongs_to :dealer
+  belongs_to :owner, polymorphic: true
 
   has_many_attached :xmls
   has_one :reservation, dependent: :destroy

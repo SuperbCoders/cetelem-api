@@ -18,7 +18,7 @@ FactoryBot.define do
     vin { 'WVWZ****ZJE2*****' }
 
     association :car, factory: :car
-    association :dealer, factory: :dealer
+    association :owner, factory: :dealer
 
     after(:create) do |car|
       car.extra_options << create(:extra_option)

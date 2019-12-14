@@ -25,7 +25,7 @@ class CreateDealerCars < ActiveRecord::Migration[6.0]
       t.string :state, limit: 20
 
       t.references :car, index: true, foreign_key: true, null: false
-      t.references :dealer, index: true, foreign_key: true, null: false
+      t.references :owner, polymorphic: true
 
       t.timestamps
     end

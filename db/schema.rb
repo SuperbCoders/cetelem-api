@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_091127) do
+ActiveRecord::Schema.define(version: 2019_12_14_093659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2019_12_11_091127) do
     t.string "city", null: false
     t.string "street"
     t.string "building", limit: 10
-    t.integer "region_code"
     t.point "location"
     t.bigint "dealer_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -117,11 +116,18 @@ ActiveRecord::Schema.define(version: 2019_12_11_091127) do
     t.integer "run"
     t.string "state", limit: 20
     t.bigint "car_id", null: false
-    t.bigint "dealer_id", null: false
+    t.string "owner_type"
+    t.bigint "owner_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["car_id"], name: "index_dealer_cars_on_car_id"
-    t.index ["dealer_id"], name: "index_dealer_cars_on_dealer_id"
+    t.index ["owner_type", "owner_id"], name: "index_dealer_cars_on_owner_type_and_owner_id"
+  end
+
+  create_table "dealer_groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "dealers", force: :cascade do |t|
@@ -137,6 +143,8 @@ ActiveRecord::Schema.define(version: 2019_12_11_091127) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rate", limit: 2
+    t.bigint "dealer_group_id"
+    t.index ["dealer_group_id"], name: "index_dealers_on_dealer_group_id"
   end
 
   create_table "extra_options", force: :cascade do |t|
@@ -235,7 +243,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_091127) do
   add_foreign_key "dealer_car_extra_options", "dealer_cars"
   add_foreign_key "dealer_car_extra_options", "extra_options"
   add_foreign_key "dealer_cars", "cars"
-  add_foreign_key "dealer_cars", "dealers"
+  add_foreign_key "dealers", "dealer_groups"
   add_foreign_key "images", "dealer_cars"
   add_foreign_key "models", "marks"
   add_foreign_key "modifications", "models"

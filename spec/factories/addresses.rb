@@ -8,8 +8,8 @@ FactoryBot.define do
     city { 'Москва' }
     street { 'wcsa' }
     building { '21' }
-    region_code { 44 }
-    # location { '' }
+    location { [21.21, 45.33] }
+
     association :dealer, factory: :dealer
   end
 end
