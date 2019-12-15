@@ -12,6 +12,7 @@ class DealerCar < ApplicationRecord
   ENGINE_TYPES = %w[Бензин Дизель Гибрид Электро ГБО Водородный.].freeze
   STATES = ['Отличное', 'Хорошее', 'Среднее', 'Требует ремонта'].freeze
   OWNERS_NUMBER = ['Один владелец', 'Два владельца', 'Три и более'].freeze
+  AVAILABILITY = ['В наличии', 'Под заказ'].freeze
 
   belongs_to :car
   belongs_to :owner, polymorphic: true
@@ -72,7 +73,9 @@ class DealerCar < ApplicationRecord
       delaer_id: dealer_id,
       dealer_group_id: dealer_group_id,
       extra_options: extra_options.as_json(only: %i[name type]),
-      images: images.map { |i| rails_blob_path(i, only_path: true) }
+      images: images.map { |i| rails_blob_path(i, only_path: true) },
+      created_at: created_at,
+      updated_at: updated_at
     )
   end
 end

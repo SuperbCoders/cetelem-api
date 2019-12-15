@@ -46,14 +46,14 @@ RSpec.describe Api::V1::DealersController, type: :controller do
     it 'returns empty body' do
       get :reservations, params: { dealer_id: dealer.id }
 
-      expect(JSON.parse(response.body).size).to eq(0)
+      expect(response_json.size).to eq(0)
     end
 
     it 'returns correct body' do
       dealer_id = reservation.dealer_car.owner_id
       get :reservations, params: { dealer_id: dealer_id }
 
-      expect(JSON.parse(response.body).first).to include('id' => reservation.id)
+      expect(response_json.first).to include('id' => reservation.id)
     end
   end
 
