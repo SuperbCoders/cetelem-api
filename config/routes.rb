@@ -71,6 +71,8 @@ Rails.application.routes.draw do
         resources :statistics, only: %i[index]
 
         resources :dealer_groups, only: %i[index show create update destroy]
+
+        resources :default_filters, only: %i[index show create update destroy]
       end
 
       resources :signup, only: %i[create]

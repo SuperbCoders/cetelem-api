@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_14_093659) do
+ActiveRecord::Schema.define(version: 2019_12_15_131950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,13 @@ ActiveRecord::Schema.define(version: 2019_12_14_093659) do
     t.integer "rate", limit: 2
     t.bigint "dealer_group_id"
     t.index ["dealer_group_id"], name: "index_dealers_on_dealer_group_id"
+  end
+
+  create_table "default_filters", force: :cascade do |t|
+    t.string "title", null: false
+    t.json "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "extra_options", force: :cascade do |t|
