@@ -24,6 +24,9 @@ Rails.application.routes.draw do
 
         member do
           get :cars
+          get :statistics
+          get :reservations
+
           post :upload_xml
         end
       end
@@ -64,6 +67,8 @@ Rails.application.routes.draw do
         resources :cars, only: %i[index show update destroy]
 
         resources :dealers, only: %i[index show create update destroy]
+
+        resources :statistics, only: %i[index]
 
         resources :dealer_groups, only: %i[index show create update destroy]
       end

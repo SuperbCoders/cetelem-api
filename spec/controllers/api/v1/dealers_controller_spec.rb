@@ -30,7 +30,7 @@ RSpec.describe Api::V1::DealersController, type: :controller do
 
   describe 'GET #reservations' do
     it 'returns http not_found' do
-      get :reservations, params: { dealer_id: 21 }
+      get :reservations, params: { dealer_id: 0 }
 
       expect(response).to have_http_status(:not_found)
     end
@@ -77,6 +77,17 @@ RSpec.describe Api::V1::DealersController, type: :controller do
       get :cars, params: { id: 0 }
 
       expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  describe 'GET #statistics' do
+    it 'returns http success' do
+      dealer_id = reservation.dealer_car.dealer_id
+      get :statistics, params: { id: dealer_id }
+
+      expect(response).to have_http_status(:success)
+      expect(response.content_type).to eq('application/json; charset=utf-8')
+      expect(response_json).to include('cars_total' => 1, 'reservations_total' => 1)
     end
   end
 

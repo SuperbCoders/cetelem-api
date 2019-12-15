@@ -19,15 +19,26 @@ class Api::V1::DealersController < ApplicationController
   end
 
   def reservations
-    return head 404 unless Dealer.exists?(id: params[:dealer_id])
+    id = params[:dealer_id] || params[:id]
+    return head 404 unless Dealer.exists?(id: id)
 
-    paginate json: Reservation.for_dealer(params[:dealer_id])
+    paginate json: Reservation.for_dealer(id)
   end
 
   def cars
     cars = Dealer.find(params[:id]).all_cars.available
 
     paginate json: cars
+  end
+
+  def statistics
+    find_dealer do |dealer|
+      response = {
+        cars_total: dealer.all_cars.count,
+        reservations_total: Reservation.for_dealer(dealer.id).count
+       }
+      render json: response
+    end
   end
 
   def upload_xml
