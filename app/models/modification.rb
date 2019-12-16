@@ -9,6 +9,7 @@ class Modification < ApplicationRecord
                 'Фургон', 'Хэтчбек', 'Ландо', 'Лифтбек', 'Лимузин', 'Микровэн', 'Минивэн',
                 'Внедорожник', 'Фаэтон-универсал', 'Пикап', 'Родстер', 'Седан', 'Тарга',
                 'Седан-хардтоп', 'Спидстер', 'Внедорожник открытый', 'Универсал', 'Фаэтон'].freeze
+  DRIVE = %w[Полный Передний Задний].freeze
 
   # validates :engine_type, inclusion: { in: %i[gasolene disel hybrid] }
   # validates :drive, inclusion: { in: %i[4wd awd fwd] }

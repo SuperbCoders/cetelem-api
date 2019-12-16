@@ -22,11 +22,13 @@ class Api::V1::Filters::DealerCarsController < ApplicationController
       run:
         { type: 'RANGE', text: 'Цена', min: DealerCar.minimum(:run), max: DealerCar.maximum(:run) },
       body_type:
-        { type: 'SELECT', text: 'Руль', options: Modification::BODY_TYPES },
+        { type: 'SELECT', text: 'Кузов', options: Modification::BODY_TYPES },
       engine_hp:
         { type: 'RANGE', text: 'Мощность (в л/с)', min: 0, max: 5_000 },
       engine_volume:
-        { type: 'RANGE', text: 'Объем двигателя', min: 0, max: 10 }
+        { type: 'RANGE', text: 'Объем двигателя', min: 0, max: 10 },
+      drive:
+        { type: 'SELECT', text: 'Привод', options: Modification::DRIVE }
     }
 
     render json: response

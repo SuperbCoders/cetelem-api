@@ -35,7 +35,7 @@ class Api::V1::DealersController < ApplicationController
     find_dealer do |dealer|
       response = {
         cars_total: dealer.all_cars.count,
-        reservations_total: Reservation.for_dealer(dealer.id).count
+        reservations_total: Reservation.for_dealer(dealer.id).where(created_at: Date.today.beginning_of_week..Time.now).count
        }
       render json: response
     end
