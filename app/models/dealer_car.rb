@@ -70,7 +70,7 @@ class DealerCar < ApplicationRecord
       owner_id: owner_id,
       owner_type: owner_type,
       dealer_name: owner.name,
-      delaer_id: dealer_id,
+      dealer_id: dealer_id,
       dealer_group_id: dealer_group_id,
       extra_options: extra_options.as_json(only: %i[name type]),
       images: images.map { |i| rails_blob_path(i, only_path: true) },

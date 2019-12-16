@@ -2,7 +2,7 @@
 
 class ReservationSerializer < ActiveModel::Serializer
   attributes :id, :phone, :email, :name, :client_id, :dealer_car_id, :vin,
-   :mark, :model, :dealer
+   :mark, :model, :dealer, :updated_at, :created_at
 
   def vin
     object.dealer_car.vin
