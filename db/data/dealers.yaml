@@ -37,3 +37,41 @@
      true
   marks:
    - mazda
+-
+  code:
+     12_359
+  official_dealer:
+     true
+  legal_name:
+     'Major Skoda'
+  trade_name:
+     'Major Skoda'
+  distributor:
+     'Major Skoda'
+  bonus:
+     true
+  bonus_description:
+     'Дарим бонус при покупке'
+  used_car_saling:
+     true
+  marks:
+   - skoda
+-
+  code:
+     12_359
+  official_dealer:
+     true
+  legal_name:
+     'Сити Авто'
+  trade_name:
+     'Сити Авто'
+  distributor:
+     'Сити Авто'
+  bonus:
+     true
+  bonus_description:
+     'Дарим бонус при покупке'
+  used_car_saling:
+     true
+  marks:
+   - nissan

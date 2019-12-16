@@ -69,7 +69,7 @@ class Api::V1::DealerCarsController < ApplicationController
   end
 
   def dealer_car_params
-    new = params.permit(:color, :wheel, :engine_type, :state, :new, :availability)
+    new = params.permit(:color, :wheel, :engine_type, :state, :new, :availability, :region_id)
     new.merge!(year: (params[:year][:min] || 0).to_i..(params[:year][:max]|| 999_999_999).to_i) if params[:year]
     new.merge!(price:(params[:price][:min] || 0).to_i..(params[:price][:max] || 999_999_999).to_i) if params[:price]
     new.merge!(run: (params[:run][:min] || 0).to_i..(params[:run][:max]|| 999_999_999).to_i) if params[:run]

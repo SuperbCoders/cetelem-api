@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_15_131950) do
+ActiveRecord::Schema.define(version: 2019_12_16_065327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,7 +144,9 @@ ActiveRecord::Schema.define(version: 2019_12_15_131950) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rate", limit: 2
     t.bigint "dealer_group_id"
+    t.bigint "region_id"
     t.index ["dealer_group_id"], name: "index_dealers_on_dealer_group_id"
+    t.index ["region_id"], name: "index_dealers_on_region_id"
   end
 
   create_table "default_filters", force: :cascade do |t|
@@ -203,6 +205,14 @@ ActiveRecord::Schema.define(version: 2019_12_15_131950) do
     t.index ["name", "body_type", "doors_count", "engine_type", "engine_hp", "drive", "gearbox", "years"], name: "uniq_modification", unique: true
   end
 
+  create_table "regions", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "postcodes", array: true
+    t.integer "code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.string "phone", limit: 16
     t.string "email"
@@ -251,6 +261,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_131950) do
   add_foreign_key "dealer_car_extra_options", "extra_options"
   add_foreign_key "dealer_cars", "cars"
   add_foreign_key "dealers", "dealer_groups"
+  add_foreign_key "dealers", "regions"
   add_foreign_key "images", "dealer_cars"
   add_foreign_key "models", "marks"
   add_foreign_key "modifications", "models"

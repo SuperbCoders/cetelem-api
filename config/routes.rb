@@ -31,6 +31,7 @@ Rails.application.routes.draw do
         end
       end
 
+
       namespace :filters do
         resources :marks, only: %i[index] do
           resources :models, only: %i[index] do
@@ -53,9 +54,15 @@ Rails.application.routes.draw do
             get :dealers
           end
         end
+
+        resources :regions, only: :index
       end
 
       resources :current_user, only: :index
+
+      namespace :regions do
+        resources :current
+      end
 
       namespace :admin do
         resources :users, only: %i[index create show update destroy]

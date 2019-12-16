@@ -46,7 +46,7 @@ class Api::V1::Admin::DealersController < ApplicationController
 
   def dealer_params
     params.permit(:code, :official_dealer, :legal_name, :trade_name, :distributor, :bonus,
-                  :bonus_description, :used_car_saling, :rate, :dealer_group_id,
+                  :bonus_description, :used_car_saling, :rate, :dealer_group_id, :region_id,
                   marks: [],
                   address_attributes: [:country, :postcode, :region, :city, :street, :building, location: []],
                   contact_infos_attributes: %i[value value_type])
