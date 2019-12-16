@@ -34,7 +34,7 @@ class ApplicationController < ActionController::API
   end
 
   def set_default_response_format
-    request.format = :json
+    request.format = :json unless request.format.symbol == :xls
   end
 
   private

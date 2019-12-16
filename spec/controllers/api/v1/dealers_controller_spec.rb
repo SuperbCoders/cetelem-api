@@ -66,6 +66,12 @@ RSpec.describe Api::V1::DealersController, type: :controller do
       expect(response_json).to be_empty
     end
 
+    it 'returns http not_found' do
+      get :cars, params: { id: 0 }
+
+      expect(response).to have_http_status(:not_found)
+    end
+
     it 'returns correct body' do
       get :cars, params: { id: dealer_car.owner_id }
 
@@ -73,10 +79,11 @@ RSpec.describe Api::V1::DealersController, type: :controller do
       expect(response_json).not_to be_empty
     end
 
-    it 'returns http not_found' do
-      get :cars, params: { id: 0 }
+    it 'returns correct xls' do
+      get :cars, params: { id: dealer_car.owner_id }, format: :xls
 
-      expect(response).to have_http_status(:not_found)
+      expect(response).to have_http_status(:success)
+      expect(response.content_type).to eq('application/octet-stream')
     end
   end
 

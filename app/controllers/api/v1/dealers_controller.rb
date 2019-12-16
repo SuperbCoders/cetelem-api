@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::DealersController < ApplicationController
+  include ActionController::MimeResponds
+
   def show
     find_dealer do |dealer|
       render json: dealer
@@ -28,7 +30,10 @@ class Api::V1::DealersController < ApplicationController
   def cars
     cars = Dealer.find(params[:id]).all_cars.available
 
-    paginate json: cars
+    respond_to do |format|
+      format.json { paginate json: cars }
+      format.xls { send_file XlsExport.call(cars.as_json, name: "dealer_#{params[:id]}") }
+    end
   end
 
   def statistics

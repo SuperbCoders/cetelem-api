@@ -38,6 +38,9 @@ gem 'rack-cors'
 # for backgroud jobs
 gem 'sidekiq'
 
+# for xls export
+gem 'spreadsheet'
+
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-byebug'
