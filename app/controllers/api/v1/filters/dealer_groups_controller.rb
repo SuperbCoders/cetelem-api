@@ -9,7 +9,7 @@ class Api::V1::Filters::DealerGroupsController < ApplicationController
   end
 
   def dealers
-    options = DealerGroup.find(params[:id]).dealers.as_json(only: [:id, :name])
+    options = DealerGroup.find(params[:id]).dealers.select(:id, :legal_name).map { |i| { id: i.id, name: i.legal_name } }
     options.unshift(id: 0, name: 'Все дилеры') unless options.empty?
 
     render json: { dealer: { type: 'SELECT', text: 'Дилер', options: options } }
