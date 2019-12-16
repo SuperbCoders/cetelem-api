@@ -38,21 +38,29 @@ class DealerCar < ApplicationRecord
   scope :available, -> { left_joins(:reservation).where('reservations.id' => nil) }
 
   def dealer_id
-    owner_id if owner_type == "Dealer"
+    owner_id if owner_type == 'Dealer'
   end
 
   def dealer_group_id
-    owner_id if owner_type == "DealerGroup"
+    owner_id if owner_type == 'DealerGroup'
+  end
+
+  def dealer
+    owner if owner_type == 'Dealer'
+  end
+
+  def dealer_group
+    owner if owner_type == 'DealerGroup'
   end
 
   def dealer_id=(val)
     self.owner_id = val
-    self.owner_type = "Dealer"
+    self.owner_type = 'Dealer'
   end
 
   def dealer_group_id=(val)
     self.owner_id = val
-    self.owner_type = "DealerGroup"
+    self.owner_type = 'DealerGroup'
   end
 
   def full
