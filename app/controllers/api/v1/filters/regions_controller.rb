@@ -2,8 +2,15 @@
 
 class Api::V1::Filters::RegionsController < ApplicationController
   def index
-    options = Region.all.order(:code).as_json(only: [:id, :name])
-    options.unshift(id: 0, name: 'Все регионы')
+    params.require(:query)
+    options = Search::Region.call(query: params[:query])
+
+    render json: {regions: { type: 'SELECT', text: 'Регион', options: options } }
+  end
+
+  def cities
+    params.require(:query)
+    options = Search::City.call(query: params[:query], region_id: params[:id])
 
     render json: {regions: { type: 'SELECT', text: 'Регион', options: options } }
   end

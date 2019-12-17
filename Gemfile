@@ -44,6 +44,9 @@ gem 'spreadsheet'
 # detect user location
 gem 'geocoder'
 
+# for http requests
+gem 'typhoeus'
+
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-byebug'
