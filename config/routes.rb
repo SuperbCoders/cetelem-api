@@ -60,9 +60,8 @@ Rails.application.routes.draw do
 
       resources :current_user, only: :index
 
-      namespace :regions do
-        resources :current
-      end
+      resources :current_location, only: :index
+
 
       namespace :admin do
         resources :users, only: %i[index create show update destroy]
