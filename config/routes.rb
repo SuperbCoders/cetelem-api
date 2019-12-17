@@ -55,6 +55,8 @@ Rails.application.routes.draw do
           end
         end
 
+        resources :default, only: :index
+
         resources :regions, only: :index do
           member do
             get :cities
@@ -65,8 +67,6 @@ Rails.application.routes.draw do
       resources :current_user, only: :index
 
       resources :current_location, only: :index
-
-      resources :default_filters, only: :index
 
       namespace :admin do
         resources :users, only: %i[index create show update destroy]
