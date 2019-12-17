@@ -3,6 +3,6 @@
 class Api::V1::CurrentLocationController < ApplicationController
 
   def index
-    request.location.data
+    render json: request.location.data
   end
 end
