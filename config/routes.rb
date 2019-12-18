@@ -58,6 +58,8 @@ Rails.application.routes.draw do
         resources :default, only: :index
 
         resources :regions, only: :index do
+          get :search
+
           member do
             get :cities
           end

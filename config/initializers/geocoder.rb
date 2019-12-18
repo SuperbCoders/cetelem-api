@@ -2,7 +2,7 @@ Geocoder.configure(
   # Geocoding options
   timeout: 5,                 # geocoding service timeout (secs)
   # lookup: :nominatim,         # name of geocoding service (symbol)
-  # ip_lookup: :ipapi_com,      # name of IP address geocoding service (symbol)
+  ip_lookup: :ipapi_com,      # name of IP address geocoding service (symbol)
   # ip_lookup: :'pelias',      # name of IP address geocoding service (symbol)
   language: :ru,              # ISO-639 language code
   # use_https: false,           # use HTTPS for lookup requests? (if supported)
@@ -22,5 +22,5 @@ Geocoder.configure(
   # distances: :linear          # :spherical or :linear
 
   # street address geocoding service (default :nominatim)
-  # lookup: :google,
+  # lookup: :ipo_api,
 )

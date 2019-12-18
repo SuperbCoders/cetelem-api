@@ -12,6 +12,6 @@ class Api::V1::Filters::RegionsController < ApplicationController
     params.require(:query)
     options = Search::City.call(query: params[:query], region_id: params[:id])
 
-    render json: {regions: { type: 'SELECT', text: 'Город', options: options } }
+    render json: { regions: { type: 'SELECT', text: 'Город', options: options } }
   end
 end
