@@ -24,5 +24,12 @@ module Queryable
       modification_ids = Modification.where(params).pluck(:id)
       joins(:car).where(cars: { modification_id: modification_ids })
     }
+
+    scope :where_address, lambda { |params|
+      return all if params.empty?
+
+      dealer_ids = Address.where(params).pluck(:dealer_id)
+      where(dealer_id: dealer_ids)
+    }
   end
 end

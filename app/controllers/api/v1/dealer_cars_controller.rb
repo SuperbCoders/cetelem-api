@@ -9,7 +9,8 @@ class Api::V1::DealerCarsController < ApplicationController
         available.
         where_dealer_car(dealer_car_params).
         where_car(car_params).
-        where_modifications(modification_params)
+        where_modifications(modification_params).
+        where_address(dealer_address_params)
 
     paginate json: cars
   end
@@ -73,6 +74,12 @@ class Api::V1::DealerCarsController < ApplicationController
     new.merge!(year: (params[:year][:min] || 0).to_i..(params[:year][:max]|| 999_999_999).to_i) if params[:year]
     new.merge!(price:(params[:price][:min] || 0).to_i..(params[:price][:max] || 999_999_999).to_i) if params[:price]
     new.merge!(run: (params[:run][:min] || 0).to_i..(params[:run][:max]|| 999_999_999).to_i) if params[:run]
+
+    new.to_h
+  end
+
+  def dealer_address_params
+    new = params.permit(:region, :city)
 
     new.to_h
   end
