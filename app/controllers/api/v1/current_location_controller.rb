@@ -10,7 +10,7 @@ class Api::V1::CurrentLocationController < ApplicationController
         country: data['country'],
         region: data['regionName'],
         city: data['city'],
-        postcode: data['postcode']
+        postcode: data['zip']
       }
 
     render json: data_json
