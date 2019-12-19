@@ -10,7 +10,7 @@ module Search
 
       JSON.parse(response.body)["result"].
         reject { |i| i['id'] == 'Free' }.
-        map { |i| { id: i['id'], name: "#{i['name']} #{i['type']}" } }
+        map { |i| { id: i['id'], name: i['type'] == 'Город' ?  i['name'] : "#{i['name']} #{i['type']}" } }
     end
   end
 end

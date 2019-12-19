@@ -18,10 +18,17 @@ module Search
       params = { query: query, contentType: :city, withParent: 1, token: "y5A2tf9ZN94NGDB6DQ2BDBTykEt4EBi9" }
 
       response = Typhoeus.get(url, params: params)
-# binding.pry
+
       JSON.parse(response.body)["result"].
         select { |i| i['type'] == 'Город' }.
-        map { |i| { id: i['id'], name: "#{i['name']}", parents: i['parents'].select { |r| r['type'].in?(%w(Область Город)) }.map { |p| { id: p['id'], name: "#{p['name']} #{p['type']}" } } } }
+        map do |i|
+          {
+            id: i['id'],
+            name: "#{i['name']}",
+            parents: i['parents'].
+              select { |r| r['type'].in?(%w(Область Город)) }.
+              map { |p| { id: p['id'], name: p['type'] == 'Город' ? p['name'] : "#{p['name']} #{p['type']}" } } }
+          end
     end
   end
 end
