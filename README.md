@@ -47,6 +47,7 @@ GET    /api/v1/dealers/:dealer_id/reservations
 GET    /api/v1/dealers/:id/cars
 POST   /api/v1/dealers/upload_xml
 GET    /api/v1/dealers/:id
+
 GET    /api/v1/filters/marks/:mark_id/models/:model_id/modifications
 GET    /api/v1/filters/marks/:mark_id/models/:model_id/complectations
 GET    /api/v1/filters/marks/:mark_id/models
@@ -54,7 +55,15 @@ GET    /api/v1/filters/marks
 GET    /api/v1/filters/dealer_cars
 GET    /api/v1/filters/extra_options
 GET    /api/v1/filters/dealers
+GET    /api/v1/filters/dealer_groups
+GET    /api/v1/filters/dealer_groups/:id/dealers
+GET    /api/v1/filters/cities?query=
+GET    /api/v1/filters/regions?query=
+GET    /api/v1/filters/regions/:id/cities?query=
+
 GET    /api/v1/current_user
+GET    /api/v1/current_location
+
 GET    /api/v1/admin/users
 POST   /api/v1/admin/users
 GET    /api/v1/admin/users/:id
@@ -74,6 +83,12 @@ GET    /api/v1/admin/cars/:id
 PATCH  /api/v1/admin/cars/:id
 PUT    /api/v1/admin/cars/:id
 DELETE /api/v1/admin/cars/:id
+GET    /api/v1/admin/dealer_groups
+POST   /api/v1/admin/dealer_groups
+GET    /api/v1/admin/dealer_groups/:id
+PATCH  /api/v1/admin/dealer_groups/:id
+DELETE /api/v1/admin/dealer_groups/:id
+
 POST   /api/v1/signup
 POST   /api/v1/session
 POST   /api/v1/refresh
@@ -109,6 +124,9 @@ price[:max]=1
 
 run[:min]=1
 run[:max]=1
+
+region=Москва
+city=Москва
 ```
 
 ### App Services
@@ -122,6 +140,17 @@ CarImport.call(path)
 ```ruby
 DealerCarImport.call(path, dealer: Dealer.find(:id))
 ```
+
+* Поиск регионов
+```ruby
+Search::Region.call(query:)
+```
+
+* Поиск городов в регионе
+```ruby
+Search::City.call(query:, region_id:)
+```
+
 ### App Jobs
 ```ruby
 DealerCarUploadJob
