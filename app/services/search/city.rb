@@ -26,7 +26,7 @@ module Search
             id: i['id'],
             name: "#{i['name']}",
             parents: i['parents'].
-              select { |r| r['type'].in?(%w(Область Город)) }.
+              reject { |r| r['type'] == 'Город' }.
               map { |p| { id: p['id'], name: p['type'] == 'Город' ? p['name'] : "#{p['name']} #{p['type']}" } } }
           end
     end
