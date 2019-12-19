@@ -17,7 +17,7 @@ Rails.application.routes.draw do
         end
       end
 
-      # resources :car_filters, only: %i[index show], param: :filter
+
 
       resources :dealers, only: %i[show update] do
         get :reservations
@@ -58,17 +58,19 @@ Rails.application.routes.draw do
         resources :default, only: :index
 
         resources :regions, only: :index do
-          get :search
-
           member do
             get :cities
           end
         end
+
+        resources :cities, only: :index
       end
+
 
       resources :current_user, only: :index
 
       resources :current_location, only: :index
+
 
       namespace :admin do
         resources :users, only: %i[index create show update destroy]
