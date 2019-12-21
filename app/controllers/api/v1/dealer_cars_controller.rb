@@ -26,7 +26,8 @@ class Api::V1::DealerCarsController < ApplicationController
       return head 403 if car.reservation.present?
 
       params.require(%i[name phone])
-      reservation = car.create_reservation(params.permit(:name, :phone, :email, :client_id))
+      reservation = car.create_reservation(
+        params.permit(:name, :phone, :email, :client_id, :dealer_id))
 
       render json: reservation, status: 201
     end
