@@ -15,4 +15,17 @@ class Api::V1::CurrentLocationController < ApplicationController
 
     render json: data_json
   end
+
+  def show
+    data = Search::City.by_id(params[:id])
+
+    data_json =
+      {
+        id: data['id'],
+        name: data['name'],
+        postcode: data['zip']
+      }
+
+    render json: data_json
+  end
 end

@@ -30,5 +30,15 @@ module Search
               map { |p| { id: p['id'], name: p['type'] == 'Город' ? p['name'] : "#{p['name']} #{p['type']}" } } }
           end
     end
+
+    def self.by_id(id)
+      url ="https://kladr-api.ru/api.php"
+      params = { cityId: id, contentType: :city, token: "y5A2tf9ZN94NGDB6DQ2BDBTykEt4EBi9" }
+
+      response = Typhoeus.get(url, params: params)
+
+      JSON.parse(response.body)["result"].
+        find { |i| i['type'] == 'Город' }
+    end
   end
 end

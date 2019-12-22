@@ -73,7 +73,7 @@ Rails.application.routes.draw do
 
       resources :current_user, only: :index
 
-      resources :current_location, only: :index
+      resources :current_location, only: %i[index show]
 
 
       namespace :admin do
