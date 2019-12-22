@@ -7,4 +7,11 @@ class Api::V1::Filters::DealersController < ApplicationController
 
     render json: { mark: { type: 'SELECT', text: 'Дилер', options: options } }
   end
+
+  def regions
+    options = Address.select(:region_id, :region).distinct.map { |i| { id: i.region_id, name: i.region } }
+    options.unshift(id: 0, name: 'Все регионы') unless options.empty?
+
+    render json: { regions: { type: 'SELECT', text: 'Дилер', options: options } }
+  end
 end

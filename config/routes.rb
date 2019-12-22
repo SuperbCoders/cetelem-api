@@ -47,7 +47,11 @@ Rails.application.routes.draw do
 
         resources :extra_options, only: :index
 
-        resources :dealers, only: :index
+        resources :dealers, only: :index do
+          collection do
+            get :regions
+          end
+        end
 
         resources :dealer_groups, only: :index do
           member do
