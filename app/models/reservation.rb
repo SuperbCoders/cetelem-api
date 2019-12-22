@@ -20,4 +20,13 @@ class Reservation < ApplicationRecord
       [created_at, data.where("DATE(created_at) = ?", created_at).count]
     end.to_h
   end
+
+  def self.full_statistics
+    date = Date.today - 14.days
+    data = since(date)
+
+    (date..Date.today).map do |created_at|
+      [created_at, data.where("DATE(created_at) = ?", created_at).count]
+    end.to_h
+  end
 end

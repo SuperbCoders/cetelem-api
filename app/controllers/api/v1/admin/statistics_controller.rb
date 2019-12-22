@@ -9,7 +9,8 @@ class Api::V1::Admin::StatisticsController < ApplicationController
   def index
     response = {
       cars_total: DealerCar.count,
-      reservations_total: Reservation.count
+      reservations_total: Reservation.since(Date.today - 14.days).count,
+      statistics: Reservation.full_statistics
      }
 
      render json: response

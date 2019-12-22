@@ -36,16 +36,6 @@ class Api::V1::Admin::DealerCarsController < ApplicationController
     end
   end
 
-  def statistics
-    find_dealer do |dealer|
-      response = {
-        cars_total: DealerCar.count,
-        reservations_total: Reservation.for_dealer(dealer.id).count
-       }
-      render json: response
-    end
-  end
-
   def destroy
     DealerCar.find(params[:id]).destroy
 
