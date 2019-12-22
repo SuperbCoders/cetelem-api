@@ -29,7 +29,7 @@ module Queryable
       return all if params.empty?
 
       dealer_ids = Address.where(params).pluck(:dealer_id)
-      where(dealer_id: dealer_ids)
+      where(owner_id: dealer_ids, owner_type: 'Dealer')
     }
   end
 end
