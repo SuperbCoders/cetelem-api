@@ -34,5 +34,15 @@ RSpec.describe Api::V1::Admin::DealersController, type: :controller do
       expect(response).to have_http_status(:success)
       expect(response_json).to include('dealer_group_id' => dealer_group_id)
     end
+
+    it 'updates region_id' do
+      sign_in_as(admin)
+      address = create(:address, dealer_id: dealer.id)
+
+      patch :update, params: { id: dealer.id, address_attributes:  address.attributes.merge('region_id' => '3300000000000') }
+
+      expect(response).to have_http_status(:success)
+      expect(response_json['address']).to include('region_id' => '3300000000000')
+    end
   end
 end
