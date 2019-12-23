@@ -15,6 +15,20 @@ RSpec.describe Api::V1::Admin::CarsController, type: :controller do
       expect(response).to have_http_status(:success)
       expect(response_json.size).to eq(1)
     end
+
+    it "returns correct by query" do
+      get :index, params: { query: car.mark.name }
+
+      expect(response).to have_http_status(:success)
+      expect(response_json.size).to eq(1)
+    end
+
+    it "returns empty by query" do
+      get :index, params: { query: "asfcfe" }
+
+      expect(response).to have_http_status(:success)
+      expect(response_json.size).to eq(0)
+    end
   end
 
   describe "GET #show" do

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Car < ApplicationRecord
+  include Searchable
+
   belongs_to :mark
   belongs_to :model
   belongs_to :modification

@@ -5,7 +5,7 @@ class Api::V1::Admin::CarsController < ApplicationController
   end
 
   def index
-    paginate json: Car.all.limit(100)
+    paginate json: Car.where_name(params[:query])
   end
 
   def show
