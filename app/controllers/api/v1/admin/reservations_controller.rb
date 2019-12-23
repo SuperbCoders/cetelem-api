@@ -7,7 +7,7 @@ class Api::V1::Admin::ReservationsController < ApplicationController
   end
 
   def index
-    paginate json: Reservation.all
+    render json: Reservation.all
   end
 
   def show

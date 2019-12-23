@@ -7,7 +7,7 @@ class Api::V1::Admin::UsersController < ApplicationController
   end
 
   def index
-    paginate json: User.all
+    render json: User.all
   end
 
   def create
