@@ -39,7 +39,19 @@ RSpec.describe Api::V1::Admin::CarsController, type: :controller do
     end
   end
 
-  describe "GET #update" do
+  describe "POST #create" do
+    it "returns http success" do
+      params = {
+        mark: "Volks", model: "Tiguan", complectation: "Highline",
+        modification: "2.0 TSI (220лс)", body_type: "Внедорожник"}
+      post :create, params: params
+
+      expect(response).to have_http_status(:success)
+      expect(response_json).to include("mark" => "Volks", "model" => "Tiguan", "modification" => "2.0 TSI (220лс)", "complectation" => "Highline")
+    end
+  end
+
+  describe "PATCH #update" do
     it "returns http success" do
       post :update, params: { id: car.id, complectation: "Highline" }
 

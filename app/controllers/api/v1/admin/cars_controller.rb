@@ -14,6 +14,12 @@ class Api::V1::Admin::CarsController < ApplicationController
     end
   end
 
+  def create
+    car = Car.full_create(car_params)
+
+    render json: car
+  end
+
   def update
     find_car do |car|
       car.full_update(car_params)
@@ -32,7 +38,7 @@ class Api::V1::Admin::CarsController < ApplicationController
   private
 
   def car_params
-    params.permit(:mark, :model, :modification, :complectation)
+    params.permit(:mark, :model, :modification, :complectation, :body_type, :years, :drive, :doors_count)
   end
 
   def find_car

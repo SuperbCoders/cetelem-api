@@ -23,4 +23,20 @@ class Car < ApplicationRecord
       years: params[:years].presence || modification.years
     )
   end
+
+  def self.full_create(params)
+    transaction do
+      mark = Mark.find_or_create_by!(name: params[:mark])
+      model = mark.models.find_or_create_by!(name: params[:model])
+      modification =model.modifications.find_or_create_by!(
+        name: params[:modification],
+        body_type: params[:body_type],
+        doors_count: params[:doors_count],
+        drive: params[:drive],
+        years: params[:years])
+      complectation = model.complectations.find_or_create_by!(name: params[:complectation])
+
+      create(mark: mark, model: model, complectation: complectation, modification: modification)
+    end
+  end
 end
