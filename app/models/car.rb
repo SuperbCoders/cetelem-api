@@ -34,8 +34,7 @@ class Car < ApplicationRecord
         doors_count: params[:doors_count],
         drive: params[:drive],
         years: params[:years])
-      complectation = model.complectations.find_or_create_by!(name: params[:complectation])
-
+      complectation = model.complectations.find_or_create_by!(name: params[:complectation]) if params[:complectation].present?
       create(mark: mark, model: model, complectation: complectation, modification: modification)
     end
   end
