@@ -15,12 +15,15 @@ class Car < ApplicationRecord
 
     model.update(name: params[:model]) if params[:mark].present?
 
-    complectation.update(name: params[:complectation]) if params[:complectation].present?
+    complectation.update(name: params[:complectation]) if params[:complectation].present? && complectation
+    create_complectation(name: params[:complectation]) if params[:complectation].present? && complectation.nil?
 
     modification.update(
       name: params[:modification].presence || modification.name,
       body_type: params[:body_type].presence || modification.body_type,
-      years: params[:years].presence || modification.years
+      years: params[:years].presence || modification.years,
+      drive: params[:drive].presence || modification.drive,
+      doors_count: params[:doors_count].presence || modification.doors_count
     )
   end
 

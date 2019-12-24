@@ -63,6 +63,7 @@ RSpec.describe Api::V1::Admin::CarsController, type: :controller do
 
   describe "PATCH #update" do
     it "returns http success" do
+      car.update(complectation_id: nil)
       post :update, params: { id: car.id, complectation: "Highline" }
 
       expect(response).to have_http_status(:success)
