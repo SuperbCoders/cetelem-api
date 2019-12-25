@@ -21,6 +21,6 @@ class Modification < ApplicationRecord
   before_create do |modification|
     modification.engine_hp ||= modification.name[/\(.* л\.с\.\)/, 0]&.gsub(/[()]/, '')
     modification.engine_volume ||= modification.name[/\d\.\d/, 0]
-    modification.doors_count ||= modification.body_type[/\d/, 0]
+    modification.doors_count ||= modification.body_type[/\d/, 0] if modification.body_type
   end
 end
