@@ -23,6 +23,10 @@ class Car < ApplicationRecord
       body_type: params[:body_type].presence || modification.body_type,
       years: params[:years].presence || modification.years,
       drive: params[:drive].presence || modification.drive,
+      engine_type: params[:engine_type].presence || modification.engine_type,
+      engine_hp: params[:engine_hp].presence || modification.engine_hp,
+      engine_volume: params[:engine_volume].presence || modification.engine_volume,
+      gearbox: params[:gearbox].presence || modification.gearbox,
       doors_count: params[:doors_count].presence || modification.doors_count
     )
   end
@@ -36,6 +40,10 @@ class Car < ApplicationRecord
         body_type: params[:body_type],
         doors_count: params[:doors_count],
         drive: params[:drive],
+        engine_type: params[:engine_type],
+        engine_hp: params[:engine_hp],
+        engine_volume: params[:engine_volume],
+        gearbox: params[:gearbox],
         years: params[:years])
       complectation = model.complectations.find_or_create_by!(name: params[:complectation]) if params[:complectation].present?
       create(mark: mark, model: model, complectation: complectation, modification: modification)

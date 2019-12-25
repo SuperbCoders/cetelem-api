@@ -10,10 +10,12 @@ class Modification < ApplicationRecord
                 'Внедорожник', 'Фаэтон-универсал', 'Пикап', 'Родстер', 'Седан', 'Тарга',
                 'Седан-хардтоп', 'Спидстер', 'Внедорожник открытый', 'Универсал', 'Фаэтон'].freeze
   DRIVE = %w[Полный Передний Задний].freeze
+  ENGINE_TYPES = %w[Бензин Дизель Гибрид Электро ГБО Водородный].freeze
+  GEARBOXES = ['Автоматическая', 'Механическая', 'Автомат вариатор', 'Автомат робот'].freeze
 
-  # validates :engine_type, inclusion: { in: %i[gasolene disel hybrid] }
-  # validates :drive, inclusion: { in: %i[4wd awd fwd] }
-  # validates :gearbox, inclusion: { in: %i[robot automat manual] }
+  # validates :engine_type, inclusion: { in: ENGINE_TYPES }
+  # validates :drive, inclusion: { in: DRIVE }
+  # validates :gearbox, inclusion: { in: GEARBOXES }
   # validates :body_type, inclusion: { in: BODY_TYPES }
 
   before_create do |modification|

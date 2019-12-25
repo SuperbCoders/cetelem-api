@@ -64,10 +64,12 @@ RSpec.describe Api::V1::Admin::CarsController, type: :controller do
   describe "PATCH #update" do
     it "returns http success" do
       car.update(complectation_id: nil)
-      post :update, params: { id: car.id, complectation: "Highline" }
+      post :update, params: { id: car.id, complectation: "Highline", engine_type: 'Бензин',
+        engine_hp: '249', engine_volume: '2.0', drive: 'Передний', gearbox: 'Автомат' }
 
       expect(response).to have_http_status(:success)
-      expect(response_json).to include("complectation" => "Highline")
+      expect(response_json).to include("complectation" => "Highline", 'engine_type' => 'Бензин',
+        'engine_hp' => 249, 'engine_volume' => 2.0, 'drive' => 'Передний', 'gearbox' => 'Автомат')
     end
   end
 

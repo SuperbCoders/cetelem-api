@@ -38,7 +38,8 @@ class Api::V1::Admin::CarsController < ApplicationController
   private
 
   def car_params
-    params.permit(:mark, :model, :modification, :complectation, :body_type, :years, :drive, :doors_count)
+    params.permit(:mark, :model, :modification, :complectation, :body_type, :years, :drive,
+                  :doors_count, :engine_type, :engine_hp, :engine_volume, :gearbox)
   end
 
   def find_car

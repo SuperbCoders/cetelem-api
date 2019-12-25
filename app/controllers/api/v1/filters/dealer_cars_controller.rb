@@ -8,7 +8,7 @@ class Api::V1::Filters::DealerCarsController < ApplicationController
       wheel:
         { type: 'SELECT', text: 'Руль', options: DealerCar::WHEELS },
       engine_type:
-        { type: 'SELECT', text: 'Двигатель', options: DealerCar::ENGINE_TYPES },
+        { type: 'SELECT', text: 'Двигатель', options: Modification::ENGINE_TYPES },
       state:
         { type: 'SELECT', text: 'Состояние', options: DealerCar::STATES },
       availability:
@@ -28,7 +28,9 @@ class Api::V1::Filters::DealerCarsController < ApplicationController
       engine_volume:
         { type: 'RANGE', text: 'Объем двигателя', min: 0, max: 10 },
       drive:
-        { type: 'SELECT', text: 'Привод', options: Modification::DRIVE }
+        { type: 'SELECT', text: 'Привод', options: Modification::DRIVE },
+      gearbox:
+        { type: 'SELECT', text: 'Привод', options: Modification::GEARBOXES }
     }
 
     render json: response
