@@ -30,7 +30,7 @@ class Api::V1::Filters::DealerCarsController < ApplicationController
       drive:
         { type: 'SELECT', text: 'Привод', options: Modification::DRIVE },
       gearbox:
-        { type: 'SELECT', text: 'Привод', options: Modification::GEARBOXES }
+        { type: 'SELECT', text: 'Коробка передач', options: Modification::GEARBOXES }
     }
 
     render json: response
